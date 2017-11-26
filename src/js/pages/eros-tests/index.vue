@@ -38,7 +38,7 @@
                         index:3,
                         title:"我的",
                         titleColor:"#ffffff",
-                        src:`${weex.config.eros.jsServer}/dist/js/pages/eros-tests/home.index.js`,
+                        src:`${weex.config.eros.jsServer}/dist/js/pages/eros-tests/mine/index.js`,
                         visibility:"hidden"
                     }
                 ]

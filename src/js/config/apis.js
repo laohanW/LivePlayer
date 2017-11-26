@@ -8,9 +8,12 @@ const AJAX_MAP = {
     'COMMON.getInfo': '/test/info',
     'gameTabs':'/test/get/gameTabs',
     'showTab01':"/test/post/showTab01",
-    'showTab02':"/test/post/showTab02"
+    'showTab02':"/test/post/showTab02",
+    "discover":"/test/get/discover"
 }
+const AJAX_MAP_PRO={
 
+}
 /**
  * 请求返回统一拦截器
  * options 你请求传入的所有参数和配置

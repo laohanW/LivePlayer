@@ -19,7 +19,8 @@
             return {
                 //weex字体图标目前只支持unicode格式
                 iconItems:{
-                    "icon-search":"&#xe651;"
+                    "icon-search":"&#xe651;",
+                    "icon-zhuan":"&#xe606;"
 //                    "icon-appreciate": "&#xe644;",
 //                    "icon-appreciatefill": "&#xe6e3",
 //                    "icon-check": "&#xe645;",

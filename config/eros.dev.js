@@ -8,7 +8,8 @@ module.exports = {
         // home
         "js/pages/eros-tests/index.vue",
         "js/pages/eros-tests/home/index.vue",
-        "js/pages/eros-tests/discover/index.vue"
+        "js/pages/eros-tests/discover/index.vue",
+        "js/pages/eros-tests/mine/index.vue"
 
     ],
     "alias": {

@@ -3,7 +3,7 @@
         <div class="nav">
             <text class="navText">发现</text>
         </div>
-        <list class="bui-list"
+        <list
             showRefresh="true"
             :style="{ height: (1333 - 40) + 'px' }"
             @refresh="onRefresh">
@@ -26,14 +26,23 @@
                 </div>
             </cell>
             <cell >
-                <video-content :title="wonderfullContent.title" :subTitle="wonderfullContent.subTitle" :items="wonderfullContent.contents"></video-content>
+                <video-content :title="discovers.wonderfulls.title" :subTitle="discovers.wonderfulls.subTitle" :items="discovers.wonderfulls.contents"></video-content>
             </cell>
             <cell class="recommand-category">
                 <bui-icon name="icon-search"></bui-icon>
-                <text class="recommand-category-text">兴趣推荐</text>
+                <text class="recommand-category-text">{{discovers.recommands.title}}</text>
             </cell>
-            <cell class="">
-
+            <cell class="recommand-item" v-for="v in discovers.recommands.contents">
+                <div class="recommand-item-preview">
+                    <image class="application-item-preview-image" :src="v.image"></image>
+                    <div class="recommand-item-preview-empty"></div>
+                    <text class="application-item-preview-count">{{v.count}}</text>
+                </div>
+                <div class="recommand-item-detail">
+                    <text class="recommand-item-detail-description">{{v.description}}</text>
+                    <text class="recommand-item-detail-userName">{{v.userName}}</text>
+                    <text class="recommand-item-detail-gameName">{[v.gameName}}</text>
+                </div>
             </cell>
         </list>
     </div>
@@ -48,7 +57,7 @@
         justify-content: center;
         align-items: center;
         width:750px;
-        height:140px;
+        height:100px;
     }
     .navText{
         font-size: 40px;
@@ -78,13 +87,64 @@
     .recommand-category-text{
         font-size: 20px;
     }
+    .recommand-item {
+        flex-direction: row;
+        margin:8px;
+    }
+    .recommand-item-preview{
+        flex-direction: column;
+        width:300px;
+        height:200px;
+    }
+    .application-item-preview-image{
+        position: absolute;
+        width: 300px;
+        height:200px;
+        padding:10px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius:20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius:20px;
+    }
+    .recommand-item-preview-empty{
+        justify-content: flex-start;
+    }
+    .application-item-preview-count{
+        color: rgba(255, 255, 255, 1);
+        align-items: flex-end;
+        align-self:flex-end;
+    }
+    .recommand-item-detail{
+        flex-direction: column;
+        width:450px;
+        height:200px;
+    }
+    .recommand-item-detail-description{
+        font-size:30px;
+    }
+    .recommand-item-detail-userName{
+        font-size:20px;
+    }
+    .recommand-item-detail-gameName{
+        font-size:20px;
+    }
 </style>
 
 <script>
+    if(process.env.NODE_ENV === 'development')require('Config')
     import buiIcon from 'Eros/bui/components/bui-icon.vue'
     import videoContent from 'Components/categoryContent/videoContent.vue'
     export default {
         components:{buiIcon,videoContent},
+        created(){
+          this.$fetch({
+              name:"discover"
+          }).then(resData=>{
+              this.discovers=resData.data
+          },error=>{
+
+          })
+        },
         methods:{
             onRefresh(){
 
@@ -92,27 +152,34 @@
         },
         data(){
             return{
-                wonderfullContent:{
-                    title:"神镜头",
-                    subTitle:"王者荣耀、gaoxiao、更多精彩",
-                    contents:[
-                        {
-                            index:0,
-                            image:"//gtd.alicdn.com/imgextra/TB12yGaNVXXXXX7aXXXSutbFXXX.jpg",
-                            playCount:12000,
-                            commentCount:253,
-                            time:160000,
-                            description:"心中单英雄米莱迪！技能"
-                        },
-                        {
-                            index:1,
-                            image:"//gtd.alicdn.com/imgextra/TB12yGaNVXXXXX7aXXXSutbFXXX.jpg",
-                            playCount:12000,
-                            commentCount:253,
-                            time:160000,
-                            description:"心中单英雄米莱迪！技能"
-                        }
-                    ]
+                discovers:{
+                    wonderfulls:{
+                        title:"",
+                        subTitle:"",
+                        contents:[
+                            {
+                                index:0,
+                                image:"",
+                                playCount:0,
+                                commentCount:0,
+                                time:0,
+                                description:""
+                            }
+                        ]
+                    },
+                    recommands:
+                    {
+                        title:"",
+                        contents:[
+                            {
+                                image:"",
+                                count:111,
+                                description:"",
+                                userName:"",
+                                gameName:""
+                            }
+                        ]
+                    }
                 }
             }
         }
