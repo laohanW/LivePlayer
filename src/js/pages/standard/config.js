@@ -1,0 +1,26 @@
+export const tabConfig=[
+    {
+        icon:'&#xe660;',
+        name:'首页',
+        key:'home',
+        src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
+    },
+    {
+        icon:'&#xe660;',
+        name:'首页',
+        key:'home',
+        src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
+    },
+    {
+        icon:'&#xe660;',
+        name:'首页',
+        key:'home',
+        src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
+    },
+    {
+        icon:'&#xe660;',
+        name:'首页',
+        key:'home',
+        src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
+    }
+]

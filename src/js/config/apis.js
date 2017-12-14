@@ -5,10 +5,16 @@ let tools = weex.requireModule('bmTool')
 
 // 接口超时设置
 export const TIMEOUT = 30000
-
+export const TYPE = 'mock';
 // 配置请求的别名
 export const apis = {
-    'COMMON.getInfo': '/test/info'
+    mock:{
+        'COMMON.getInfo': '/test/info',
+        'category.recomList':'/test/category/recomList'
+    },
+    http:{
+
+    }
 }
 
 
