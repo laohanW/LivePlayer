@@ -1,5 +1,5 @@
 <template>
-    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'bui-iconfont' }">{{getFontName}}</text>
+    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'bui-iconfont' }">{{getFontName}}{{text}}</text>
 </template>
 
 <script>
@@ -9,7 +9,7 @@
 
     module.exports = {
         beforeCreate() {
-            domModule.addRule('fontFace',{
+            domModule.addRule('fontFace', {
                 'fontFamily': 'bui-iconfont',
                 'src': "url('//at.alicdn.com/t/font_3ppcziztn5wpcik9.ttf')"
             });
@@ -17,7 +17,7 @@
         data: function () {
             return {
                 //weex字体图标目前只支持unicode格式
-                iconItems:{
+                iconItems: {
 
                     "icon-appreciate": "&#xe644;",
                     "icon-appreciatefill": "&#xe6e3",
@@ -266,6 +266,10 @@
             name: {
                 type: String
             },
+            text: {
+                type: String,
+                default:''
+            },
             color: {
                 type: String,
                 default: '#9ea7b4'
@@ -275,9 +279,9 @@
                 default: '40px'
             }
         },
-        computed:{
+        computed: {
             //匹配对应的字体图标的unicode
-            getFontName: function() {
+            getFontName: function () {
                 return he.decode(this.iconItems[this.name]);
             }
         },
@@ -286,5 +290,5 @@
                 this.$emit("click", $event);
             }
         }
-    }
+    };
 </script>

@@ -5,27 +5,30 @@ module.exports = {
         "js/config/index.js",
         // mediator
         "js/mediator/index.vue",
+        "js/pages/standard/index.vue",
+        "js/pages/standard/home/index.vue",
+        "js/pages/standard/entertain/index.vue"
         // home
-        "js/pages/eros-demos/index.vue",
-
-        "js/pages/eros-demos/tab1/tab-page/index.vue",
-        "js/pages/eros-demos/tab2/index.vue",
-        "js/pages/eros-demos/tab3/index.vue",
-        "js/pages/eros-demos/tab4/index.vue",
-
-        "js/pages/eros-demos/tab2/button.vue",
-        "js/pages/eros-demos/tab2/tip.vue",
-        "js/pages/eros-demos/tab2/header.vue",
-        "js/pages/eros-demos/tab2/image.vue",
-        "js/pages/eros-demos/tab2/icon.vue",
-        "js/pages/eros-demos/tab2/tabbar.vue",
-
-        "js/pages/eros-demos/tab3/router.vue",
-        "js/pages/eros-demos/tab3/amap.vue",
-        "js/pages/eros-demos/tab3/iconfont.vue",
-
-        "js/pages/eros-demos/tab4/demo/index.vue",
-        "js/pages/eros-demos/tab4/waterfall.vue"
+        // "js/pages/eros-demos/index.vue",
+        //
+        // "js/pages/eros-demos/tab1/tab-page/index.vue",
+        // "js/pages/eros-demos/tab2/index.vue",
+        // "js/pages/eros-demos/tab3/index.vue",
+        // "js/pages/eros-demos/tab4/index.vue",
+        //
+        // "js/pages/eros-demos/tab2/button.vue",
+        // "js/pages/eros-demos/tab2/tip.vue",
+        // "js/pages/eros-demos/tab2/header.vue",
+        // "js/pages/eros-demos/tab2/image.vue",
+        // "js/pages/eros-demos/tab2/icon.vue",
+        // "js/pages/eros-demos/tab2/tabbar.vue",
+        //
+        // "js/pages/eros-demos/tab3/router.vue",
+        // "js/pages/eros-demos/tab3/amap.vue",
+        // "js/pages/eros-demos/tab3/iconfont.vue",
+        //
+        // "js/pages/eros-demos/tab4/demo/index.vue",
+        // "js/pages/eros-demos/tab4/waterfall.vue"
     ],
     "alias": {
         "Eros": "js/components/__eros__",

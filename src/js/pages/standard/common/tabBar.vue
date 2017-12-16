@@ -1,15 +1,12 @@
 <template>
     <div class="wrapper">
         <div v-for="(i,index) in items" :key="index" class="bar-item" @click="tabTo(i,key)">
-            <text class="bar-ic iconfont" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.icon | iconFilter}}</text>
+            <bui-icon :name="i.icon" class="bar-ic iconfont" :class="[pIndexKey == i.key ? 'bar-active' : '']"></bui-icon>
             <text class="bar-txt" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.name}}</text>
         </div>
     </div>
 </template>
 <style scoped>
-    .iconfont{
-        font-family:iconfont;
-    }
     .wrapper{
         position:fixed;
         bottom:0;
@@ -43,6 +40,7 @@
     }
 </style>
 <script>
+    import buiIcon from 'Eros/bui/components/bui-icon.vue'
     export default {
         props: {
             items: {
@@ -54,6 +52,7 @@
                 pIndexKey:'home'
             }
         },
+        components:{buiIcon},
         methods:{
             tabTo(_key){
                 if(this.pIndexKey === _key) return;

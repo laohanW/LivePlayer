@@ -86,10 +86,9 @@
 </style>
 
 <script>
-    if(process.env.NODE_ENV === 'development')require('Config')
     import {WxcTabPage} from 'Eros/weex-ui'
     import buiImageSlider from 'Eros/bui/components/bui-image-slider.vue'
-    import streamContent from './common/streamContent.vue'
+    import streamContent from './streamContent.vue'
     import buiIcon from 'Eros/bui/components/bui-icon.vue'
     export default {
         props:{
@@ -103,7 +102,7 @@
                 method:'POST',
                 name:'category.recomList',
                 data:{
-                    type:pageType
+                    type:this.pageType
                 }
             }).then(resData=>{
                 console.log(resData.data)

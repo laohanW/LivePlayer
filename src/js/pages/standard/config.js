@@ -1,26 +1,26 @@
 export const tabConfig=[
     {
-        icon:'&#xe660;',
+        icon:'icon-appreciate',
         name:'首页',
         key:'home',
         src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
     },
     {
-        icon:'&#xe660;',
+        icon:'icon-appreciate',
         name:'娱乐',
-        key:'home',
+        key:'entertain',
         src:`${weex.config.eros.jsServer}/dist/js/pages/standard/entertain/index.js`
     },
     {
-        icon:'&#xe660;',
-        name:'首页',
-        key:'home',
+        icon:'icon-appreciate',
+        name:'发现',
+        key:'discover',
         src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
     },
     {
-        icon:'&#xe660;',
-        name:'首页',
-        key:'home',
+        icon:'icon-appreciate',
+        name:'我的',
+        key:'mine',
         src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
     }
 ]

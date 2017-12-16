@@ -1,10 +1,10 @@
 <template>
-    <stream-page type="entertain"></stream-page>
+    <stream-page pageType=1></stream-page>
 </template>
 
 <script>
     if(process.env.NODE_ENV === 'development')require('Config')
-    import streamPage from './common/streamPage.vue'
+    import streamPage from '../common/streamPage.vue'
     export default {
         components:{streamPage}
     }

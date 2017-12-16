@@ -8,7 +8,7 @@ module.exports = {
         "iOS": "1.0.0"
     },
     "page": {
-        "homePage": "/pages/eros-demos/index.js",
+        "homePage": "/pages/standard/index.js",
         "mediatorPage": "/mediator/index.js",
         "navBarColor": "#ffffff",
         "navItemColor": "#333"

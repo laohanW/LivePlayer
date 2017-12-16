@@ -55,6 +55,7 @@ android {
                                   GETUI_APP_SECRET:GETTUI_APPSECRET,
                                   APP_ID:APPLICATION_ID
             ]
+            applicationIdSuffix '.debug' //增加包名后缀
         }
 
     }
