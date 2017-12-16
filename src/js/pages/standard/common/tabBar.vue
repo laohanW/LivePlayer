@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div v-for="(i,index) ini items" :key="index" class="bar-item" @click="tabTo(i,key)">
-            <text class="bar-ic iconfont" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.icon | myFilter}}</text>
+            <text class="bar-ic iconfont" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.icon | iconFilter}}</text>
             <text class="bar-txt" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.name}}</text>
         </div>
     </div>
@@ -43,10 +43,6 @@
     }
 </style>
 <script>
-    import he from '../utils/he';
-    Vue.filter('myFilter',function (value) {
-        return he.decode(value)
-    })
     export default {
         props: {
             items: {
