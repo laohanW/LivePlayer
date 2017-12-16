@@ -7,9 +7,9 @@ export const tabConfig=[
     },
     {
         icon:'&#xe660;',
-        name:'首页',
+        name:'娱乐',
         key:'home',
-        src:`${weex.config.eros.jsServer}/dist/js/pages/standard/home/index.js`
+        src:`${weex.config.eros.jsServer}/dist/js/pages/standard/entertain/index.js`
     },
     {
         icon:'&#xe660;',

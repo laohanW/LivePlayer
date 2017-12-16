@@ -33,9 +33,9 @@ body {
 
 <script>
     if (process.env.NODE_ENV === 'development') require('Config')
-    import he from '../utils/he';
-    import util from './utils/util';
-    import tabBar from './commom/tabBar';
+    import he from './utils/he';
+    import util from './utils/utils';
+    import tabBar from './common/tabBar';
     import {tabConfig} from './config'
 
     Vue.filter('iconFilter', function (value) {

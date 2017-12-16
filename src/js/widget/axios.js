@@ -36,7 +36,7 @@ export default {
                     url:url,
                     header: options.header || {},
                     data: options.data || {},
-                    timeout: TIMEOUT || 30000,
+                    timeout: TIMEOUT || 30000
                 }, (resData) => {
                     // 可以做统一的监控
                     Vue.prototype.eros.responseHandler(options, resData, resolve, reject)

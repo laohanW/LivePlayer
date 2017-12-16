@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div v-for="(i,index) ini items" :key="index" class="bar-item" @click="tabTo(i,key)">
+        <div v-for="(i,index) in items" :key="index" class="bar-item" @click="tabTo(i,key)">
             <text class="bar-ic iconfont" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.icon | iconFilter}}</text>
             <text class="bar-txt" :class="[pIndexKey == i.key ? 'bar-active' : '']">{{i.name}}</text>
         </div>

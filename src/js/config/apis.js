@@ -8,14 +8,15 @@ export const TIMEOUT = 30000
 export const TYPE = 'mock';
 // 配置请求的别名
 export const apis = {
-    mock:{
-        'COMMON.getInfo': '/test/info',
-        'category.recomList':'/test/category/recomList'
+    mock: {
+        'category.recomList': '/test/category/recomList',
+        'showTab01': "/test/post/showTab01",
+        'showTab02': "/test/post/showTab02"
     },
-    http:{
-
+    http: {
+        'category.recomList': 'http://localhost:3000/api/1.0/category/recomList'
     }
-}
+};
 
 
 /**

@@ -1,5 +1,5 @@
 <template>
-    <stream-page type="game"></stream-page>
+    <stream-page type="entertain"></stream-page>
 </template>
 
 <script>
