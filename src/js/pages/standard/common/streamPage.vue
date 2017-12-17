@@ -4,53 +4,42 @@
                   :tab-titles="tabTitles"
                   :tab-styles="tabStyles"
                   title-type="text"
-                  :needSlider="needSlider"
-                  :is-tab-view="isTabView"
+                  :needSlider="true"
+                  :is-tab-view="true"
                   :tab-page-height="tabPageHeight"
                   :spm-c="4307989"
                   @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
-        <list
-              :ref="'list_0'"
+        <list v-for="(v,index) in tabContents"
+              :ref="'list_'+index"
               class="item-container"
               showRefresh="true"
               :style="{ height: (1333 - tabStyles.height) + 'px' }"
-              @refresh="onRecomRefresh()">
-            <cells class="cell-border" >
-            </cells>
+              @refresh="onRefresh(index)">
+            <cell class="cell-border" >
+            </cell>
             <cell class="cell-search">
                 <a class="searchbar">
                     <text class="searchbar-text">搜索明星大神/网络游戏</text>
                 </a>
             </cell>
             <cell class="cell-eqSlider">
-                <bui-image-slider :items="recommendContents.bannerItems" :sliderStyle="{width:'750px',height:'250px'}"></bui-image-slider>
+                <bui-image-slider :items="v.bannerItems" :sliderStyle="{width:'750px',height:'250px'}"></bui-image-slider>
             </cell>
             <cell class="cell-border"></cell>
-            <cell class="cell-content" v-for="x in recommendContents.categoryContent">
-                <stream-content :title="x.title" :subTitle="x.subTitle" :items="x.contents"></stream-content>
+            <cell  v-if="index === 0">
+                <div class="cell-content" v-for="x in v.categoryContent">
+                    <div class="category-recom">
+                        <text class="category-recom-text">{{x.title}}</text>
+                        <text class="category-recom-sub-text">{{x.subTitle}}</text>
+                    </div>
+                    <stream-content :items="x.contents"></stream-content>
+                </div>
+            </cell>
+            <cell class="cell-content" v-else>
+                <tool-bar :items="v.list" @selectedClick="onSelectedChildCategory"></tool-bar>
+                <stream-content :items="v.content"></stream-content>
             </cell>
         </list>
-        <!--<list v-for="(v,index) in tabContents"-->
-              <!--:ref="'list_'+index+1"-->
-              <!--class="item-container"-->
-              <!--showRefresh="true"-->
-              <!--:style="{ height: (1333 - tabStyles.height) + 'px' }"-->
-              <!--@refresh="onRefresh(index)">-->
-        <!--<cells class="cell-border" >-->
-        <!--</cells>-->
-        <!--<cell class="cell-search">-->
-            <!--<a class="searchbar">-->
-                <!--<text class="searchbar-text">搜索明星大神/网络游戏</text>-->
-            <!--</a>-->
-        <!--</cell>-->
-        <!--<cell class="cell-eqSlider">-->
-            <!--<bui-image-slider :items="v.bannerItems" :sliderStyle="{width:'750px',height:'250px'}"></bui-image-slider>-->
-        <!--</cell>-->
-        <!--<cell class="cell-border"></cell>-->
-        <!--<cell>-->
-
-        <!--</cell>-->
-    <!--</list>-->
     </wxc-tab-page>
 </template>
 
@@ -60,6 +49,25 @@
     }
     .item-container{
 
+    }
+    .category-recom {
+        margin-top: 20px;
+        padding-left: 24px;
+        width: 750px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .category-recom-text {
+        color: #000;
+        font-weight: 600;
+        font-size: 28px;
+        align-self: flex-start;
+    }
+    .category-recom-sub-text{
+        color: rgba(0, 0, 0, 0.48);
+        font-weight: 600;
+        font-size: 28px;
+        align-self: flex-end;
     }
     .cell-border{
         background-color: #f2f3f4;
@@ -108,79 +116,162 @@
     import buiImageSlider from 'Eros/bui/components/bui-image-slider.vue'
     import streamContent from './streamContent.vue'
     import buiIcon from 'Eros/bui/components/bui-icon.vue'
+    import toolBar from './toolbar.vue'
+
     export default {
         props:{
             pageType:{
                 type:Number
             }
         },
-        components:{WxcTabPage,buiImageSlider,streamContent,buiIcon},
+        components:{WxcTabPage,buiImageSlider,streamContent,buiIcon,toolBar},
         created(){
             this.$fetch({
-                method:'POST',
-                name:'category.recomList',
-                data:{
-                    type:this.pageType
+                method: 'POST',
+                name: 'other.categoryRecomList',
+                data: {
+                    type: this.pageType
                 }
-            }).then(resData=>{
-                console.log(resData.data)
-                this.tabTitles=resData.data
-                this.tabContents=new Array(this.tabTitles.length)
-                for(let i=0;i<this.tabTitles.length;i++)
-                {
-                    this.tabContents[i]={
-                        categoryId:this.tabTitles[i].categoryId,
-                        bannerItems:[],
-                        categoryContent:[]
+            }).then(resData => {
+                let list = resData.data.list;
+                let recomContent = resData.data.content;
+                let recomBanner = resData.data.bannerItems;
+                this.tabTitles.unshift(
+                    {
+                        title: '推荐',
+                        activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png',
+                    });
+                list.forEach(el => {
+                    this.tabTitles.push({
+                        title: el.name,
+                        activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png',
+                        categoryId: el.categoryId
+                    });
+                });
+                this.tabContents = new Array(this.tabTitles.length)
+                for (let i = 0; i < this.tabContents.length; i++) {
+                    if (i === 0) {
+                        let recom = {
+                            bannerItems: recomBanner,
+                            categoryContent: recomContent
+                        };
+                        this.$set(this.tabContents, 0, recom)
+                    } else {
+                        let cont = {
+                            list: [],
+                            bannerItems: [],
+                            content: []
+                        };
+                        this.$set(this.tabContents, i, cont)
                     }
                 }
-                console.log(this.tabContents)
-                this.selectRecommendPage();
-            },error=>{
+            }, error => {
                 console.log(error)
-            })
+            });
         },
         methods:{
             wxcTabPageCurrentTabSelected(e){
-                console.log(e)
-                this.selectedTab=e.page
-                if(this.selectedTab === 0)
+                this.currentSelectedPage = e.page;
+                if(e.page === 0)
                 {
                     this.selectRecommendPage();
                 } else {
-                    this.selectTabPage(this.tabContents[e.page].categoryId)
+                    this.selectTabPage(e.page)
                 }
-            },
-            onRecomRefresh(){
-
             },
             onRefresh(index)
             {
-
+                if (index === 0) {
+                    this.selectRecommendPage();
+                } else {
+                    this.selectTabPage(index);
+                }
             },
             selectRecommendPage(){
                 this.$fetch({
-                    method:'GET',
-                    name:'showTab1'
+                    method: 'POST',
+                    name: 'liveStream.categoryRecomContent',
+                    data: {
+                        type: this.pageType
+                    }
+                }).then(resData => {
+                    let recom= {
+                        bannerItems: resData.data.bannerItems,
+                        categoryContent: resData.data.content
+                    };
+                    this.$set(this.tabContents,0,recom)
+                }, error => {
+                    console.log(error);
+                });
+            },
+            selectTabPage(page){
+                let categoryId = this.tabTitles[page].categoryId;
+                this.$fetch({
+                    method:'POST',
+                    name:'other.childCategoryRecomList',
+                    data:{
+                        categoryId:categoryId
+                    }
                 }).then(resData=>{
-                    console.log(resData);
-                    this.recommendContents = resData.data;
+                    let list = [];
+                    resData.data.list.forEach(val => {
+                        list.push({
+                            name:val.name,
+                            key:val.childCategoryId
+                        })
+                    });
+                    list.unshift({
+                        name: '全部',
+                        key: categoryId
+                    });
+                    let data = {
+                        bannerItems: resData.data.bannerItems,
+                        list: list,
+                        content: resData.data.content
+                    };
+                    this.$set(this.tabContents,page, data);
                 },error=>{
                     console.log(error);
                 })
             },
-            selectTabPage(categoryId){
-//                this.tabContents=this.tabContents.map((val,index)=>{
-//                    if(val.categoryId && val.categoryId===resData.data.categoryId) {
-//                        return resData.data
-//                    }
-//                    return val
-//                })
+            onSelectedChildCategory({key,index}){
+                console.log(key)
+                if (index === 0) {
+                    this.$fetch({
+                        method: 'POST',
+                        name: 'liveStream.childCategoryRecomContent',
+                        data: {
+                            categoryId: key
+                        }
+                    }).then(resData => {
+                        this.tabContents[this.currentSelectedPage].content.length = 0;
+                        resData.data.forEach(val => {
+                            this.tabContents[this.currentSelectedPage].content.push(val);
+                        });
+                    }, error => {
+                        console.log(error);
+                    });
+                } else {
+                    this.$fetch({
+                        method: 'POST',
+                        name: 'liveStream.list',
+                        data: {
+                            childCategoryId: key
+                        }
+                    }).then(resData => {
+                        this.tabContents[this.currentSelectedPage].content.length = 0;
+                        resData.data.forEach(val=>{
+                            this.tabContents[this.currentSelectedPage].content.push(val);
+                        })
+                    }, error => {
+                        console.log(error);
+                    });
+                }
             }
         },
         data(){
             return{
-                selectedTab:0,
+                currentSelectedPage:0,
                 btnSearchStyle:{
                     borderColor:"#2e2f33",
                     borderBottomLeft:"40px",
@@ -189,26 +280,9 @@
                 textSearchStyle:{
                     fontSize:20
                 },
-                needSlider:true,
-                isTabView:true,
                 tabPageHeight:1333,
-                tabList:[0,1,2,3,4,5,6,7,8],
-                recommendContents:{
-                    bannerItems:[],
-                    categoryContent:[]
-                },
-                tabContents:[
-                    {
-                        categoryId:"01",
-                    }
-                ],
-                tabTitles:[
-                    {
-                        title: '',
-                        activeIcon: '',
-                        categoryId: "01"
-                    }
-                ],
+                tabContents:[],
+                tabTitles:[],
                 tabStyles:{
                     bgColor: '#FFFFFF',
                     titleColor: '#666666',

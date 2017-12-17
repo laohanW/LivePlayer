@@ -9,13 +9,17 @@ export const TYPE = 'mock';
 // 配置请求的别名
 export const apis = {
     mock: {
-        'category.recomList': '/test/category/recomList',
-        'showTab1': '/test/post/showTab1'
+        'other.categoryRecomList': '/test/other/categoryRecomList',
+        'other.childCategoryRecomList': '/test/other/childCategoryRecomList',
+
+        'liveStream.list': '/test/liveStream/list',
+        'liveStream.childCategoryRecomContent': '/test/liveStream/childCategoryRecomContent',
+        'liveStream.categoryRecomContent': '/test/liveStream/categoryRecomContent'
     },
     http: {
-        'category.recomList': 'http://localhost:3000/api/1.0/category/recomList'
+        'other.categoryRecomList': 'http://localhost:3000/api/1.0/category/categoryRecomList'
     }
-};
+}
 
 
 /**

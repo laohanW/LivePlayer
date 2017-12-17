@@ -19,7 +19,7 @@ module.exports = [
                         url: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'
                     }
                 ],
-                categoryContent: [
+                content: [
                     {
                         title: "全部直播",
                         subTitle: "网游|单机|娱乐|手游>",
