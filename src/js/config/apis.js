@@ -10,8 +10,7 @@ export const TYPE = 'mock';
 export const apis = {
     mock: {
         'category.recomList': '/test/category/recomList',
-        'showTab01': "/test/post/showTab01",
-        'showTab02': "/test/post/showTab02"
+        'showTab1': '/test/post/showTab1'
     },
     http: {
         'category.recomList': 'http://localhost:3000/api/1.0/category/recomList'

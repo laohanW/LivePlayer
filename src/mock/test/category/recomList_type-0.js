@@ -1,5 +1,5 @@
 module.exports = [{
-    "delay": 500,
+    "delay": 100,
     "response": {
         "resCode": 0,
         "msg": null,

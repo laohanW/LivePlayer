@@ -1,12 +1,10 @@
 module.exports = [
     {
-        "delay": 500,
         "delay": 100,
         "response": {
             "resCode": 0,
             "msg": null,
             "data": {
-                dataSpm: "02",
                 bannerItems: [
                     {
                         url: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'

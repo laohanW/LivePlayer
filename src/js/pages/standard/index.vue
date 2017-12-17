@@ -33,20 +33,14 @@ body {
 
 <script>
     if (process.env.NODE_ENV === 'development') require('Config')
-//    import he from './utils/he';
-//    import util from './utils/utils';
     import tabBar from './common/tabBar';
     import {tabConfig} from './config'
 
-//    Vue.filter('iconFilter', function (value) {
-//        return he.decode(value);
-//    });
     export default {
         components: {
             'tab-bar':tabBar
         },
         created(){
-//            util.initIconFont();
         },
         data(){
             return{
@@ -55,14 +49,14 @@ body {
         },
         methods:{
             onTabTo(_result){
-                let _key=_result.data.key || '';
-                this.items.forEach(val => {
+                let _key = _result.data.key || '';
+                this.items.forEach((val) => {
                     if (val.key === _key) {
                         val.visibility = 'visible'
                         return
                     }
                     val.visibility = 'hidden'
-                });
+                })
             }
         }
     }

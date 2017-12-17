@@ -19,13 +19,22 @@ export default {
                     method = options.method || 'GET';
                 } else {
                     if (TYPE ==='mock') {
-                        let d='';
-                        let keys = Object.keys(options.data);
-                        keys.forEach((val) => {
-                            keys += '_' + val+"-"+options.data[val];
-                        });
-                        url = Vue.prototype.eros.apis.mock[options.name]+keys;
-                        method = 'GET';
+                        method = options.method || 'GET';
+                        if(method === 'GET')
+                        {
+                            url = Vue.prototype.eros.apis.mock[options.name];
+                            method = options.method || 'GET';
+                        } else if(method === 'POST')
+                        {
+                            let d='';
+                            let keys = Object.keys(options.data);
+                            keys.forEach((val) => {
+                                d += '_' + val+"-"+options.data[val];
+                            });
+                            url = Vue.prototype.eros.apis.mock[options.name]+d;
+                            method = 'GET';
+                            options.data = {};
+                        }
                     } else {
                         url = Vue.prototype.eros.apis.http[options.name];
                         method = options.method || 'GET';

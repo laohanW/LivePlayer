@@ -7,7 +7,9 @@ module.exports = {
         "js/mediator/index.vue",
         "js/pages/standard/index.vue",
         "js/pages/standard/home/index.vue",
-        "js/pages/standard/entertain/index.vue"
+        "js/pages/standard/entertain/index.vue",
+        "js/pages/standard/discover/index.vue",
+        "js/pages/standard/mine/index.vue"
         // home
         // "js/pages/eros-demos/index.vue",
         //

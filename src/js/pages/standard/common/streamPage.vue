@@ -9,12 +9,12 @@
                   :tab-page-height="tabPageHeight"
                   :spm-c="4307989"
                   @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
-        <list v-for="(v,index) in tabContents"
-              :ref="'list_'+index"
+        <list
+              :ref="'list_0'"
               class="item-container"
               showRefresh="true"
               :style="{ height: (1333 - tabStyles.height) + 'px' }"
-              @refresh="onRefresh(index)">
+              @refresh="onRecomRefresh()">
             <cells class="cell-border" >
             </cells>
             <cell class="cell-search">
@@ -23,16 +23,34 @@
                 </a>
             </cell>
             <cell class="cell-eqSlider">
-                <bui-image-slider :items="v.bannerItems" :sliderStyle="{width:'750px',height:'250px'}"></bui-image-slider>
+                <bui-image-slider :items="recommendContents.bannerItems" :sliderStyle="{width:'750px',height:'250px'}"></bui-image-slider>
             </cell>
             <cell class="cell-border"></cell>
-            <cell v-if="index === 0">
-
-            </cell>
-            <cell class="cell-content" v-for="x in v.categoryContent" v-else>
+            <cell class="cell-content" v-for="x in recommendContents.categoryContent">
                 <stream-content :title="x.title" :subTitle="x.subTitle" :items="x.contents"></stream-content>
             </cell>
         </list>
+        <!--<list v-for="(v,index) in tabContents"-->
+              <!--:ref="'list_'+index+1"-->
+              <!--class="item-container"-->
+              <!--showRefresh="true"-->
+              <!--:style="{ height: (1333 - tabStyles.height) + 'px' }"-->
+              <!--@refresh="onRefresh(index)">-->
+        <!--<cells class="cell-border" >-->
+        <!--</cells>-->
+        <!--<cell class="cell-search">-->
+            <!--<a class="searchbar">-->
+                <!--<text class="searchbar-text">搜索明星大神/网络游戏</text>-->
+            <!--</a>-->
+        <!--</cell>-->
+        <!--<cell class="cell-eqSlider">-->
+            <!--<bui-image-slider :items="v.bannerItems" :sliderStyle="{width:'750px',height:'250px'}"></bui-image-slider>-->
+        <!--</cell>-->
+        <!--<cell class="cell-border"></cell>-->
+        <!--<cell>-->
+
+        <!--</cell>-->
+    <!--</list>-->
     </wxc-tab-page>
 </template>
 
@@ -133,26 +151,31 @@
                     this.selectTabPage(this.tabContents[e.page].categoryId)
                 }
             },
+            onRecomRefresh(){
+
+            },
             onRefresh(index)
             {
 
             },
             selectRecommendPage(){
-
+                this.$fetch({
+                    method:'GET',
+                    name:'showTab1'
+                }).then(resData=>{
+                    console.log(resData);
+                    this.recommendContents = resData.data;
+                },error=>{
+                    console.log(error);
+                })
             },
             selectTabPage(categoryId){
-                this.$fetch({
-                    name:'showTab'+categoryId
-                }).then(resData=>{
-                    this.tabContents=this.tabContents.map((val,index)=>{
-                        if(val.categoryId===resData.data.categoryId) {
-                            return resData.data
-                        }
-                        return val
-                    })
-                },error=>{
-
-                })
+//                this.tabContents=this.tabContents.map((val,index)=>{
+//                    if(val.categoryId && val.categoryId===resData.data.categoryId) {
+//                        return resData.data
+//                    }
+//                    return val
+//                })
             }
         },
         data(){
@@ -170,11 +193,13 @@
                 isTabView:true,
                 tabPageHeight:1333,
                 tabList:[0,1,2,3,4,5,6,7,8],
+                recommendContents:{
+                    bannerItems:[],
+                    categoryContent:[]
+                },
                 tabContents:[
                     {
                         categoryId:"01",
-                        bannerItems:[],
-                        categoryContent:[]
                     }
                 ],
                 tabTitles:[
