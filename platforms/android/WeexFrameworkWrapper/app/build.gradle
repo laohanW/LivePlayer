@@ -107,4 +107,7 @@ dependencies {
     compile 'com.android.support:support-v4:23.1.1'
     testCompile 'junit:junit:4.12'
     compile project(':wxframework')
+    compile ('io.socket:socket.io-client:0.8.3') {
+        exclude group: 'org.json', module: 'json'
+    }
 }
