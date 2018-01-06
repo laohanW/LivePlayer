@@ -1,0 +1,20 @@
+.bui-dropdown-box {
+  position: fixed;
+  opacity: 0;
+  transform: scale(0.9, 0.9); }
+
+.bui-dropdown-content {
+  position: relative;
+  margin-top: 40px;
+  border-radius: 10px;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 15px;
+  flex-direction: column;
+  flex: 1; }
+
+.bui-dropdown-arrow {
+  position: absolute;
+  top: 1px; }
+
+/*# sourceMappingURL=dropdown.css.map */

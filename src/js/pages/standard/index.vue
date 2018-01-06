@@ -32,6 +32,7 @@ body {
 </style>
 
 <script>
+    console.log('------------------------------------------------- New Instance');
     if (process.env.NODE_ENV === 'development') require('Config')
     import tabBar from './common/tabBar';
     import {tabConfig} from './config'

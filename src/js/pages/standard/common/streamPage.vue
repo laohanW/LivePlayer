@@ -48,7 +48,7 @@
 
     }
     .item-container{
-
+        width:750px;
     }
     .category-recom {
         margin-top: 20px;
@@ -112,10 +112,10 @@
 </style>
 
 <script>
-    import {WxcTabPage} from 'Eros/weex-ui'
-    import buiImageSlider from 'Eros/bui/components/bui-image-slider.vue'
+    import WxcTabPage from 'Components/weex-ui/wxc-tab-page'
+    import buiImageSlider from 'Components/bui-weex/components/bui-image-slider.vue'
     import streamContent from './streamContent.vue'
-    import buiIcon from 'Eros/bui/components/bui-icon.vue'
+    import buiIcon from 'Components/bui-weex/components/bui-icon.vue'
     import toolBar from './toolbar.vue'
 
     export default {
@@ -148,23 +148,25 @@
                         categoryId: el.categoryId
                     });
                 });
-                this.tabContents = new Array(this.tabTitles.length)
-                for (let i = 0; i < this.tabContents.length; i++) {
+                let tabContents = new Array(this.tabTitles.length)
+                for (let i = 0; i < tabContents.length; i++) {
                     if (i === 0) {
                         let recom = {
                             bannerItems: recomBanner,
                             categoryContent: recomContent
                         };
-                        this.$set(this.tabContents, 0, recom)
+                        this.tabContents[0]=recom;
                     } else {
                         let cont = {
                             list: [],
                             bannerItems: [],
                             content: []
                         };
-                        this.$set(this.tabContents, i, cont)
+                        this.tabContents[i] = cont;
                     }
                 }
+                this.$set(this.tabContents, tabContents);
+                console.log(this.tabContents);
             }, error => {
                 console.log(error)
             });

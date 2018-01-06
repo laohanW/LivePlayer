@@ -40,7 +40,7 @@
     }
 </style>
 <script>
-    import buiIcon from 'Eros/bui/components/bui-icon.vue'
+    import buiIcon from 'Components/bui-weex/components/bui-icon.vue'
     export default {
         props: {
             items: {

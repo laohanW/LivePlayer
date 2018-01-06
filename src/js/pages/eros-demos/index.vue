@@ -6,6 +6,11 @@
 import tabs from 'Components/tabs/bar'
 const IMAGE ='http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png'
 const SELECTED_IMAGE = 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png'
+
+async function foo() {
+  return await 1
+}
+
 export default {
     globalEvent: {
         appActive() {
@@ -17,10 +22,14 @@ export default {
     },
     bmRouter: {
         viewWillAppear() {
-            console.log(11111111111, 'viewWillAppear')
+            console.log('viewWillAppearTrigger')
         }
     },
     created() {
+        foo().then(function(val) {
+        console.log(val)  // should output 1
+        })
+
         let globalEvent = weex.requireModule('globalEvent')
         globalEvent.addEventListener("homeBack", options => {
             (this.curHomeBackTriggerTimes === this.maxHomeBackTriggerTimes) && this.$router.finish()
@@ -45,7 +54,7 @@ export default {
             },
             {
                 index: 1,
-                title: 'bui-weex',
+                title: 'eros-widget',
                 titleColor: '#000000',
                 icon: '',
                 image: IMAGE,
@@ -55,22 +64,12 @@ export default {
             },
             {
                 index: 2,
-                title: 'eros-widget',
-                titleColor: '#000000',
-                icon: '',
-               image: IMAGE,
-                selectedImage: SELECTED_IMAGE,
-                src: `${weex.config.eros.jsServer}/dist/js/pages/eros-demos/tab3/index.js`,
-                visibility: 'hidden',
-            },
-            {
-                index: 3,
                 title: 'eros-demo',
                 titleColor: '#000000',
                 icon: '',
                 image: IMAGE,
                 selectedImage: SELECTED_IMAGE,
-                src: `${weex.config.eros.jsServer}/dist/js/pages/eros-demos/tab4/index.js`,
+                src: `${weex.config.eros.jsServer}/dist/js/pages/eros-demos/tab3/index.js`,
                 visibility: 'hidden',
             }],
         }

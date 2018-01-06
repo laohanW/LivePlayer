@@ -14,11 +14,10 @@ module.exports = {
         "navItemColor": "#333"
     },
     "url": {
-        "request": "http://app.weex-eros.com",
-        "jsServer": "http://app.weex-eros.com",
-
+        "jsServer": "http://app.weex-eros.com:8889",
         "image": "https://lev-inf.benmu-health.com/test/xxx",
-        "bundleUpdate": "http://localhosts:3001/app/check"
+        "bundleUpdate": "http://localhosts:3001/app/check",
+        "debugServer": "ws://192.168.5.6:8088/debugProxy/native"
     },
     "zipFolder": {
         "iOS": "/ios/WeexEros/WeexEros",

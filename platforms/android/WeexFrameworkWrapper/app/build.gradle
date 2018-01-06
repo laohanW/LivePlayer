@@ -55,7 +55,6 @@ android {
                                   GETUI_APP_SECRET:GETTUI_APPSECRET,
                                   APP_ID:APPLICATION_ID
             ]
-            applicationIdSuffix '.debug' //增加包名后缀
         }
 
     }
@@ -104,10 +103,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:support-v4:23.1.1'
+    compile "com.android.support:support-v4:${PROJECT_SUPPORTLIBVERSION}"
     testCompile 'junit:junit:4.12'
     compile project(':wxframework')
-    compile ('io.socket:socket.io-client:0.8.3') {
-        exclude group: 'org.json', module: 'json'
-    }
 }
