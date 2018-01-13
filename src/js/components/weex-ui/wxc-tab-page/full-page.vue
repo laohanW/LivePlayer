@@ -250,7 +250,7 @@
       },
       _animateTransformX (page) {
         const { duration, timingFunction } = this;
-        const containerEl = this.$refs[`tab-container`];
+        const containerEl = this.$refs['tab-container'];
         const dist = page * 750;
         animation.transition(containerEl, {
           styles: {

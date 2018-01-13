@@ -10,4 +10,4 @@ export default {
     http: {
         'other.categoryRecomList': '/api/1.0/category/categoryRecomList'
     }
-}
+};

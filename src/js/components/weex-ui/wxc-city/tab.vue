@@ -84,7 +84,7 @@
           delay: 0 // ms
         }, function () {
         });
-      },
+      }
     }
   };
 </script>

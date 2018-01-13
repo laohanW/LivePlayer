@@ -1,7 +1,7 @@
 <template>
     <div :value="value" v-if="visible">
         <bui-mask @click="_maskClick"></bui-mask>
-        <div class="bui-slider-bar-box" :style="{'width':width}" :class="['bui-'+type+'-slider-bar-box']" v-on:swipe="_onSwipe($event)"
+        <div class="bui-slider-bar-box" :style="{'width':width}" :class="['bui-'+type+'-slider-bar-box']" @swipe="_onSwipe($event)"
              ref="navbar">
             <div class="bui-slider-content">
                 <scroller>
@@ -27,12 +27,12 @@
                 type: Boolean,
                 default: false
             },
-            width:{
-                type:String,
-                default:'400px'
+            width: {
+                type: String,
+                default: '400px'
             }
         },
-        data(){
+        data() {
             return {
                 visible: false
             }
@@ -45,7 +45,7 @@
                 this.$emit('input', val);
             }
         },
-        mounted(){
+        mounted() {
             if (this.value) {
                 this.visible = true;
             }
@@ -59,52 +59,52 @@
                         transformOrigin: 'center center'
                     },
                     duration: 300,
-                    timingFunction: "ease-in",
+                    timingFunction: 'ease-in',
                     delay: 0
                 }, function () {
                     fn && fn();
                 })
             },
-            show () {
-                setTimeout(()=>{
+            show() {
+                setTimeout(() => {
                     this._openBar();
-                },50);
+                }, 50);
             },
-            _openBar () {
+            _openBar() {
                 var translate = '';
-                if(this.type=="right"){
-                    translate ='translate(-600px, 0)';
-                }else if(this.type=="left"){
+                if (this.type === 'right') {
+                    translate = 'translate(-600px, 0)';
+                } else if (this.type === 'left') {
                     translate = 'translate(600px, 0)';
                 }
                 this._animationFn(translate);
             },
-            _maskClick () {
+            _maskClick() {
                 var translate = '';
-                if(this.type=="right"){
-                    translate ='translate(600px, 0px)';
-                }else if(this.type=="left"){
+                if (this.type === 'right') {
+                    translate = 'translate(600px, 0px)';
+                } else if (this.type === 'left') {
                     translate = 'translate(-600px, 0px)';
                 }
                 this._animationFn(translate, () => {
                     this.visible = false;
-                    this.$emit("close");
+                    this.$emit('close');
                 });
             },
             _onSwipe(event) {
                 switch (this.type) {
-                    case "left":
-                        if (event.direction == 'left') {
+                    case 'left':
+                        if (event.direction === 'left') {
                             this._maskClick();
                         }
                         break;
-                    case  "right":
-                        if (event.direction == 'right') {
+                    case 'right':
+                        if (event.direction === 'right') {
                             this._maskClick();
                         }
                         break;
                 }
             }
-        },
-    }
+        }
+    };
 </script>

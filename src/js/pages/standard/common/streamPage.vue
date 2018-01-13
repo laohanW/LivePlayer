@@ -4,7 +4,7 @@
                   :tab-titles="tabTitles"
                   :tab-styles="tabStyles"
                   title-type="text"
-                  :needSlider="true"
+                  :needSlider="false"
                   :is-tab-view="true"
                   :tab-page-height="tabPageHeight"
                   :spm-c="4307989"
@@ -15,8 +15,7 @@
               showRefresh="true"
               :style="{ height: (1333 - tabStyles.height) + 'px' }"
               @refresh="onRefresh(index)">
-            <cell class="cell-border" >
-            </cell>
+            <cell class="cell-border" ></cell>
             <cell class="cell-search">
                 <a class="searchbar">
                     <text class="searchbar-text">搜索明星大神/网络游戏</text>
@@ -35,7 +34,7 @@
                     <stream-content :items="x.contents"></stream-content>
                 </div>
             </cell>
-            <cell class="cell-content" v-else>
+            <cell v-else>
                 <tool-bar :items="v.list" @selectedClick="onSelectedChildCategory"></tool-bar>
                 <stream-content :items="v.content"></stream-content>
             </cell>
@@ -45,7 +44,7 @@
 
 <style scoped>
     .list-wrapper{
-
+        width:750px;
     }
     .item-container{
         width:750px;
@@ -119,13 +118,13 @@
     import toolBar from './toolbar.vue'
 
     export default {
-        props:{
-            pageType:{
-                type:Number
+        props: {
+            pageType: {
+                type: Number
             }
         },
-        components:{WxcTabPage,buiImageSlider,streamContent,buiIcon,toolBar},
-        created(){
+        components: {WxcTabPage, buiImageSlider, streamContent, buiIcon, toolBar},
+        created() {
             this.$fetch({
                 method: 'POST',
                 name: 'other.categoryRecomList',
@@ -139,7 +138,7 @@
                 this.tabTitles.unshift(
                     {
                         title: '推荐',
-                        activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png',
+                        activeIcon: 'https://gw.alicdn.com/tfs/TB1kCk2SXXXXXXFXFXXXXXXXXXX-72-72.png'
                     });
                 list.forEach(el => {
                     this.tabTitles.push({
@@ -155,7 +154,7 @@
                             bannerItems: recomBanner,
                             categoryContent: recomContent
                         };
-                        this.tabContents[0]=recom;
+                        this.tabContents[0] = recom;
                     } else {
                         let cont = {
                             list: [],
@@ -171,25 +170,23 @@
                 console.log(error)
             });
         },
-        methods:{
-            wxcTabPageCurrentTabSelected(e){
+        methods: {
+            wxcTabPageCurrentTabSelected(e) {
                 this.currentSelectedPage = e.page;
-                if(e.page === 0)
-                {
+                if (e.page === 0) {
                     this.selectRecommendPage();
                 } else {
                     this.selectTabPage(e.page)
                 }
             },
-            onRefresh(index)
-            {
+            onRefresh(index) {
                 if (index === 0) {
                     this.selectRecommendPage();
                 } else {
                     this.selectTabPage(index);
                 }
             },
-            selectRecommendPage(){
+            selectRecommendPage() {
                 this.$fetch({
                     method: 'POST',
                     name: 'liveStream.categoryRecomContent',
@@ -197,29 +194,29 @@
                         type: this.pageType
                     }
                 }).then(resData => {
-                    let recom= {
+                    let recom = {
                         bannerItems: resData.data.bannerItems,
                         categoryContent: resData.data.content
                     };
-                    this.$set(this.tabContents,0,recom)
+                    this.$set(this.tabContents, 0, recom)
                 }, error => {
                     console.log(error);
                 });
             },
-            selectTabPage(page){
+            selectTabPage(page) {
                 let categoryId = this.tabTitles[page].categoryId;
                 this.$fetch({
-                    method:'POST',
-                    name:'other.childCategoryRecomList',
-                    data:{
-                        categoryId:categoryId
+                    method: 'POST',
+                    name: 'other.childCategoryRecomList',
+                    data: {
+                        categoryId: categoryId
                     }
-                }).then(resData=>{
+                }).then(resData => {
                     let list = [];
                     resData.data.list.forEach(val => {
                         list.push({
-                            name:val.name,
-                            key:val.childCategoryId
+                            name: val.name,
+                            key: val.childCategoryId
                         })
                     });
                     list.unshift({
@@ -231,12 +228,12 @@
                         list: list,
                         content: resData.data.content
                     };
-                    this.$set(this.tabContents,page, data);
-                },error=>{
+                    this.$set(this.tabContents, page, data);
+                }, error => {
                     console.log(error);
                 })
             },
-            onSelectedChildCategory({key,index}){
+            onSelectedChildCategory({key, index}) {
                 console.log(key)
                 if (index === 0) {
                     this.$fetch({
@@ -262,7 +259,7 @@
                         }
                     }).then(resData => {
                         this.tabContents[this.currentSelectedPage].content.length = 0;
-                        resData.data.forEach(val=>{
+                        resData.data.forEach(val => {
                             this.tabContents[this.currentSelectedPage].content.push(val);
                         })
                     }, error => {
@@ -271,21 +268,21 @@
                 }
             }
         },
-        data(){
-            return{
-                currentSelectedPage:0,
-                btnSearchStyle:{
-                    borderColor:"#2e2f33",
-                    borderBottomLeft:"40px",
-                    borderBottomRight:"40px"
+        data() {
+            return {
+                currentSelectedPage: 0,
+                btnSearchStyle: {
+                    borderColor: '#2e2f33',
+                    borderBottomLeft: '40px',
+                    borderBottomRight: '40px'
                 },
-                textSearchStyle:{
-                    fontSize:20
+                textSearchStyle: {
+                    fontSize: 20
                 },
-                tabPageHeight:1333,
-                tabContents:[],
-                tabTitles:[],
-                tabStyles:{
+                tabPageHeight: 1333,
+                tabContents: [],
+                tabTitles: [],
+                tabStyles: {
                     bgColor: '#FFFFFF',
                     titleColor: '#666666',
                     activeTitleColor: '#3D3D3D',
@@ -305,5 +302,5 @@
                 }
             }
         }
-    }
+    };
 </script>

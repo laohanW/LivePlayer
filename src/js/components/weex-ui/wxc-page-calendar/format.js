@@ -190,7 +190,7 @@ export function getWeekRows (y, m, today, dateRange, departDate, arriveDate, sel
         let ext = '';
 
         if (descList && descList.length > 0) {
-          const nowDesc = descList.filter(item => item.date == date);
+          const nowDesc = descList.filter(item => item.date === date);
           if (nowDesc && nowDesc.length > 0) {
             ext = nowDesc[0].value;
             if (nowDesc[0].emphasize) {

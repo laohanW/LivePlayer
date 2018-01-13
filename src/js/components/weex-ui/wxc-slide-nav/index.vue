@@ -103,9 +103,9 @@
       slideY (y, callback) {
         Animation.transition(this.$refs.wrapper, {
           styles: { transform: 'translateY(' + y + 'px)' },
-          duration: 150, //ms
+          duration: 150, // ms
           timingFunction: 'ease',
-          delay: 0 //ms
+          delay: 0 // ms
         }, callback);
       }
     },

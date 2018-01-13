@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:style="{ 'position': 'absolute', 'top':'0px', 'left':left, 'bottom':'0px','right':'0px'}">
+    <div :style="{ 'position': 'absolute', 'top':'0px', 'left':left, 'bottom':'0px','right':'0px'}">
         <slot></slot>
     </div>
 </template>
@@ -8,12 +8,12 @@
     module.exports = {
         data: function () {
             return {
-                left: 0,
+                left: 0
             }
         },
         watch: {
             currentTabIndex: function () {
-                if (this.index == this.currentTabIndex) {
+                if (this.index === this.currentTabIndex) {
                     this.left = 0;
                 } else {
                     this.left = this.width;
@@ -23,16 +23,16 @@
         props: {
             index: {},
             currentTabIndex: {},
-            height:{ },
-            width:{ default: 750}
+            height: {},
+            width: {default: 750}
         },
         methods: {},
         created: function () {
-            if (this.index == 0) {
+            if (this.index === 0) {
                 this.left = 0;
             } else {
-                this.left =  this.width;
+                this.left = this.width;
             }
         }
-    }
+    };
 </script>

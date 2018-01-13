@@ -47,15 +47,15 @@
     };
     var platform = weex.config.env.platform.toLowerCase();
     module.exports = {
-        data(){
-            return{
-                activeColor:"#b9c2cf"
+        data() {
+            return {
+                activeColor: '#b9c2cf'
             }
         },
         props: {
             title: {
                 type: String,
-                default: ""
+                default: ''
             },
             leftItem: {
                 type: Object,
@@ -67,44 +67,44 @@
             },
             textColor: {
                 type: String,
-                default: "#ffffff"
+                default: '#ffffff'
             },
             iconColor: {
                 type: String,
-                default: "#ffffff"
+                default: '#ffffff'
             },
             iconSize: {
                 type: String,
-                default: "48px"
+                default: '48px'
             },
             backgroundColor: {
                 type: String,
-                default: "#4ca4fe"
+                default: '#4ca4fe'
             },
             height: {
                 type: String,
-                default: "90px"
+                default: '90px'
             },
             maxTitleWidth: {
                 type: String,
-                default: "400px"
+                default: '400px'
             }
         },
         computed: {
-            iosFixed () {
-                return platform === "ios";
+            iosFixed() {
+                return platform === 'ios';
             }
         },
         methods: {
-            _leftClick (e) {
+            _leftClick(e) {
                 this.$emit('leftClick', e);
             },
-            _rightClick (e) {
+            _rightClick(e) {
                 this.$emit('rightClick', e);
             },
-            _centerClick (e) {
+            _centerClick(e) {
                 this.$emit('centerClick', e);
             }
         }
-    }
+    };
 </script>

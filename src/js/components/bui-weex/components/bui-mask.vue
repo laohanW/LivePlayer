@@ -3,18 +3,17 @@
 </template>
 
 <script>
-
     module.exports = {
         props: {
-            "opacity": {
+            'opacity': {
                 default: '0.2'
             }
         },
         methods: {
             _click() {
-                this.$emit("click");
+                this.$emit('click');
             }
         }
-    }
+    };
 </script>
 <style lang="sass" src="../css/mask.scss"></style>

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-     <embed v-for="(item , i) in tabItems" :src="item.src" :key="i" type="weex" :style="{ visibility: item.visibility }" class="content"></embed> 
+     <embed v-for="(item , i) in tabItems" :src="item.src" :key="i" type="weex" :style="{ visibility: item.visibility }" class="content"></embed>
     <div class="tabbar" append="tree">
       <BarItem v-for="item in tabItems" :key="item.index" :index="item.index" :icon="item.icon" :title="item.title" :titleColor="item.titleColor" @tabItemOnClick="tabItemOnClick"></BarItem>
     </div>
@@ -9,31 +9,31 @@
 
 <style scoped>
 .wrapper {
-  width: 750;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+    width: 750px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin-top: 0;
-  margin-bottom: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: 100px;
 }
 
 .tabbar {
-  flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
 }
 </style>
 
@@ -45,7 +45,7 @@ export default {
     selectedColor: { default: '#ff0000' },
     unselectedColor: { default: '#000000' }
   },
-  data() {
+  data () {
     return {
       selectedIndex: 0
     }
@@ -53,11 +53,11 @@ export default {
   components: {
     BarItem
   },
-  created() {
+  created () {
     this.select(this.selectedIndex);
   },
   methods: {
-    tabItemOnClick(e) {
+    tabItemOnClick (e) {
       this.selectedIndex = e.index;
       this.select(e.index);
       this.$emit('tabBarOnClick', e);
@@ -65,18 +65,17 @@ export default {
     select: function (index) {
       for (var i = 0; i < this.tabItems.length; i++) {
         var tabItem = this.tabItems[i];
-        if (i == index) {
+        if (i === index) {
           tabItem.icon = tabItem.selectedImage;
           tabItem.titleColor = this.selectedColor;
           tabItem.visibility = 'visible';
-        }
-        else {
+        } else {
           tabItem.icon = tabItem.image;
           tabItem.titleColor = this.unselectedColor;
           tabItem.visibility = 'hidden';
         }
       }
-    },
+    }
   }
 }
 </script>

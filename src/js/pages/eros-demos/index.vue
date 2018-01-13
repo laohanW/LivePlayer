@@ -4,40 +4,32 @@
 </template>
 <script>
 import tabs from 'Components/tabs/bar'
-const IMAGE ='http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png'
+const IMAGE = 'http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png'
 const SELECTED_IMAGE = 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png'
-
-async function foo() {
-  return await 1
-}
 
 export default {
     globalEvent: {
-        appActive() {
+        appActive () {
             console.log('active')
         },
-        appDeactive() {
+        appDeactive () {
             console.log('deactive')
         }
     },
     bmRouter: {
-        viewWillAppear() {
+        viewWillAppear () {
             console.log('viewWillAppearTrigger')
         }
     },
-    created() {
-        foo().then(function(val) {
-        console.log(val)  // should output 1
-        })
-
-        let globalEvent = weex.requireModule('globalEvent')
-        globalEvent.addEventListener("homeBack", options => {
+    created () {
+        const globalEvent = weex.requireModule('globalEvent')
+        globalEvent.addEventListener('homeBack', options => {
             (this.curHomeBackTriggerTimes === this.maxHomeBackTriggerTimes) && this.$router.finish()
-            this.curHomeBackTriggerTimes ++
-            this.$notice.toast({message: `点击返回${this.maxHomeBackTriggerTimes}次之后，会关闭应用，当前点击第${this.curHomeBackTriggerTimes }次`})
+            this.curHomeBackTriggerTimes++
+            this.$notice.toast({ message: `点击返回${this.maxHomeBackTriggerTimes}次之后，会关闭应用，当前点击第${this.curHomeBackTriggerTimes}次` })
         })
     },
-    data() {
+    data () {
         return {
             curHomeBackTriggerTimes: 0,
             maxHomeBackTriggerTimes: 5,
@@ -50,7 +42,7 @@ export default {
                 image: IMAGE,
                 selectedImage: SELECTED_IMAGE,
                 src: `${weex.config.eros.jsServer}/dist/js/pages/eros-demos/tab1/tab-page/index.js`,
-                visibility: 'visible',
+                visibility: 'visible'
             },
             {
                 index: 1,
@@ -60,7 +52,7 @@ export default {
                 image: IMAGE,
                 selectedImage: SELECTED_IMAGE,
                 src: `${weex.config.eros.jsServer}/dist/js/pages/eros-demos/tab2/index.js`,
-                visibility: 'hidden',
+                visibility: 'hidden'
             },
             {
                 index: 2,
@@ -70,15 +62,15 @@ export default {
                 image: IMAGE,
                 selectedImage: SELECTED_IMAGE,
                 src: `${weex.config.eros.jsServer}/dist/js/pages/eros-demos/tab3/index.js`,
-                visibility: 'hidden',
-            }],
+                visibility: 'hidden'
+            }]
         }
     },
     components: {
         tabs
     },
     methods: {
-       tabBarOnClick(e) {
+       tabBarOnClick (e) {
             console.log('tabsOnClick', e.index)
         }
     }

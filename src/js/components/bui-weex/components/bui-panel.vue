@@ -26,14 +26,14 @@
 <style lang="sass" src="../css/panel.scss"></style>
 
 <script>
-  module.exports = {
-    props: {
-      type: { default: 'default' },
-      title: { default: '' },
-      paddingBody: { default: 20 },
-      paddingHead: { default: 20 },
-      border:{ default: 0 }
-    }
-  }
+    module.exports = {
+        props: {
+            type: {default: 'default'},
+            title: {default: ''},
+            paddingBody: {default: 20},
+            paddingHead: {default: 20},
+            border: {default: 0}
+        }
+    };
 </script>
 

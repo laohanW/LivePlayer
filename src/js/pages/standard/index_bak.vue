@@ -1,17 +1,17 @@
 <template>
     <div class="app-wrapper">
         <embed v-for="(item,index) in items" :src="item.src" type="weex" class="content" :style="{visibility:item.visibility}">
-            <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
+        <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
     </div>
 </template>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-        color: #333;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
 </style>
 <style scoped>
     .iconfont {

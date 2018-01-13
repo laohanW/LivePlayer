@@ -99,33 +99,31 @@
 </style>
 
 <script>
-    export default{
-        props:{
-            title:{
-                type:String,
-                default:""
+    export default {
+        props: {
+            title: {
+                type: String,
+                default: ''
             },
-            subTitle:{
-                type:String,
-                default:""
+            subTitle: {
+                type: String,
+                default: ''
             },
-            items:{
-                type:Array,
-                default:[
+            items: {
+                type: Array,
+                default: [
                     {
-                        category:"",
-                        name:"",
-                        count:1,
-                        image:"",
-                        description:""
+                        category: '',
+                        name: '',
+                        count: 1,
+                        image: '',
+                        description: ''
                     }
                 ]
             }
         },
-        data(){
-            return{
-
-            }
+        data() {
+            return {}
         }
-    }
+    };
 </script>

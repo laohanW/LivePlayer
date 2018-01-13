@@ -13,7 +13,7 @@
             index: {default: 0},
             title: {default: ''},
             titleColor: {default: '#000000'},
-            titleSize: {default:'28'},
+            titleSize: {default: '28'},
             selected: {default: false},
             length: {},
             scroll: {default: true}
@@ -26,12 +26,12 @@
                 this.$emit('tabItemOnClick', params);
             }
         },
-        computed:{
+        computed: {
             width: function () {
-                if(this.scroll) return;
-                var i = 750/this.length;
+                if (this.scroll) return;
+                var i = 750 / this.length;
                 return i;
             }
         }
-    }
+    };
 </script>

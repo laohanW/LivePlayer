@@ -8,7 +8,7 @@
     module.exports = {
         data: function () {
             return {
-                iosfix : false
+                iosfix: false
             }
         },
         watch: {},
@@ -19,12 +19,12 @@
         methods: {},
         created: function () {
             var env = weex.config.env.platform.toLowerCase();
-            if (env == "ios") {
-                this.iosfix =  true;
+            if (env === 'ios') {
+                this.iosfix = true;
             }
 
         }
-    }
+    };
 </script>
 
 <style>

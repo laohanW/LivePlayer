@@ -19,16 +19,16 @@
     var iconItems = require('../font/ionicons.json');
     var fontFamily = "ionfont";
     module.exports = {
-        beforeCreate () {
+        beforeCreate() {
 //            var bundleUrl = weex.config.bundleUrl;
 //            var url = bundleUrl.split('/').slice(0, -1).join('/');
 //            url += '/font/ionicons.ttf';
-            var url=`${weex.config.eros.jsServer}/dist/iconfont/ionicons.ttf`
+            var url = `${weex.config.eros.jsServer}/dist/iconfont/ionicons.ttf`
 
-            var domModule = weex.requireModule("dom");
+            var domModule = weex.requireModule('dom');
             domModule.addRule('fontFace', {
                 'fontFamily': fontFamily,
-                'src': "url('" + url + "')"
+                'src': 'url(\'' + url + '\')'
             });
         },
         props: {
@@ -53,22 +53,22 @@
                 var icon = iconItems[this.name];
                 return he.decode(icon || '');
             },
-            getStyle(){
+            getStyle() {
                 var style = {
                     'color': this.color,
                     'font-size': this.size,
                     'font-family': fontFamily
                 };
-                if(this.activeColor){
-                    style["color:active"]=this.activeColor;
+                if (this.activeColor) {
+                    style['color:active'] = this.activeColor;
                 }
                 return style;
             }
         },
         methods: {
             _click(e) {
-                this.$emit("click", e);
+                this.$emit('click', e);
             }
         }
-    }
+    };
 </script>

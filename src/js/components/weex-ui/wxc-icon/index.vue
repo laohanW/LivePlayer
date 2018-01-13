@@ -17,64 +17,64 @@
   const dom = weex.requireModule('dom');
 
   export default {
-    props: {
-      name: {
-        default: 'success',
-        type: String
+      props: {
+          name: {
+              default: 'success',
+              type: String
+          },
+          size: {
+              default: 'small',
+              type: String
+          },
+          iconStyle: {
+              type: Object,
+              default: () => ({})
+          }
       },
-      size: {
-        default: 'small',
-        type: String
+      data: () => ({
+          Icon
+      }),
+      beforeCreate() {
+          dom.addRule('fontFace', {
+              'fontFamily': 'weexUiIconFont',
+              'src': 'url(\'//at.alicdn.com/t/font_520368_r89ekv69euahsemi.ttf\')'
+          });
       },
-      iconStyle: {
-        type: Object,
-        default: () => ({})
+      computed: {
+          mergeStyle() {
+              const {iconStyle, size} = this;
+              let fontSize = '48px';
+              switch (size) {
+                  case 'xs':
+                      fontSize = '24px';
+                      break;
+                  case 'small':
+                      fontSize = '48px';
+                      break;
+                  case 'medium':
+                      fontSize = '72px';
+                      break;
+                  case 'big':
+                      fontSize = '128px';
+                      break;
+                  default:
+                      fontSize = '48px';
+              }
+              return {
+                  fontFamily: 'weexUiIconFont',
+                  fontSize,
+                  ...iconStyle
+              }
+          }
+      },
+      methods: {
+          itemClicked(name) {
+              this.$emit('wxcIconClicked', {
+                  name
+              });
+          }
       }
-    },
-    data: () => ({
-      Icon
-    }),
-    beforeCreate () {
-      dom.addRule('fontFace', {
-        'fontFamily': "weexUiIconFont",
-        'src': "url('//at.alicdn.com/t/font_520368_r89ekv69euahsemi.ttf')"
-      });
-    },
-    computed: {
-      mergeStyle () {
-        const { iconStyle, size } = this;
-        let fontSize = '48px';
-        switch (size) {
-          case 'xs':
-            fontSize = '24px';
-            break;
-          case 'small':
-            fontSize = '48px';
-            break;
-          case 'medium':
-            fontSize = '72px';
-            break;
-          case 'big':
-            fontSize = '128px';
-            break;
-          default:
-            fontSize = '48px';
-        }
-        return {
-          fontFamily: 'weexUiIconFont',
-          fontSize,
-          ...iconStyle
-        }
-      }
-    },
-    methods: {
-      itemClicked (name) {
-        this.$emit('wxcIconClicked', {
-          name
-        });
-      }
-    },
-  }
+  };
 </script>
 
 <style scoped>

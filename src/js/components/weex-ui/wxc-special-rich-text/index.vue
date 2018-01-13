@@ -86,7 +86,7 @@
   export default {
     components: {
       WxcRichTextText,
-      WxcRichTextTag,
+      WxcRichTextTag
     },
     props: {
       configList: {
@@ -96,7 +96,7 @@
     },
     data: () => ({
       iconWidth: 90,
-      iconHeight: 24,
+      iconHeight: 24
     }),
     computed: {
       newList () {

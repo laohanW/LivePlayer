@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="content-item" v-for="v in items">
-            <div class="content-item-image">
+            <div class="content-item-image" @click="onClick(v.key)">
                 <image class="content-item-background" :src="v.image"></image>
                 <text class="content-item-category">{{v.category}}</text>
                 <div class="content-item-bottom">
@@ -68,25 +68,28 @@
 </style>
 
 <script>
-    export default{
-        props:{
-            items:{
-                type:Array,
-                default:[
+    export default {
+        props: {
+            items: {
+                type: Array,
+                default: [
                     {
-                        category:"",
-                        name:"",
-                        count:1,
-                        image:"",
-                        description:""
+                        category: '',
+                        name: '',
+                        count: 1,
+                        image: '',
+                        description: ''
                     }
                 ]
             }
         },
-        data(){
-            return{
-
+        data() {
+            return {}
+        },
+        methods: {
+            onClick(key) {
+                console.log('select' + key);
             }
         }
-    }
+    };
 </script>

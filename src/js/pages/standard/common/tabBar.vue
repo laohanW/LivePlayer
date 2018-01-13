@@ -41,22 +41,23 @@
 </style>
 <script>
     import buiIcon from 'Components/bui-weex/components/bui-icon.vue'
+
     export default {
         props: {
             items: {
-                type:Array
+                type: Array
             }
         },
-        data(){
+        data() {
             return {
-                pIndexKey:'home'
+                pIndexKey: 'home'
             }
         },
-        components:{buiIcon},
-        methods:{
-            tabTo(_key){
-                if(this.pIndexKey === _key) return;
-                this.pIndexKey =_key;
+        components: {buiIcon},
+        methods: {
+            tabTo(_key) {
+                if (this.pIndexKey === _key) return;
+                this.pIndexKey = _key;
                 this.$emit('tabTo', {
                     status: 'tabTo',
                     data: {
@@ -65,5 +66,5 @@
                 });
             }
         }
-    }
+    };
 </script>

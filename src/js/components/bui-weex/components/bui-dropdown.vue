@@ -15,12 +15,12 @@
     var platform = weex.config.env.platform;
     var colorWhite = "#ffffff";
     module.exports = {
-        data(){
+        data() {
             return {
-                width: "260px",
-                left: "0px",
-                top: "0px",
-                arrowLeft: "40px",
+                width: '260px',
+                left: '0px',
+                top: '0px',
+                arrowLeft: '40px',
                 position: {
                     width: '0px',
                     height: '0px',
@@ -56,21 +56,21 @@
                 this.$emit('input', val);
             }
         },
-        mounted(){
+        mounted() {
             if (this.value) {
                 this.visible = true;
             }
         },
         methods: {
-            show(event){
+            show(event) {
                 this._reset();
-                setTimeout(()=>{
+                setTimeout(() => {
                     this._open(event);
-                },50);
+                }, 50);
             },
-            _reset(){
-                this.width="260px";
-                this.arrowLeft="40px";
+            _reset() {
+                this.width = '260px';
+                this.arrowLeft = '40px';
             },
             _open(event) {
                 var el = this.$refs.dropdownBox;
@@ -87,7 +87,7 @@
                                 this.left = this.position.x - (260 - (750 - this.position.x)) - 20;
                                 this.arrowLeft = 260 - 80;
                             } else {
-                                this.left = this.position.x + "px";
+                                this.left = this.position.x + 'px';
                             }
                         }
                     } else {
@@ -99,7 +99,7 @@
                                 this.left = this.position.x - (260 - (750 - this.position.x)) - 20;
                                 this.arrowLeft = 260 - 80;
                             } else {
-                                this.left = this.position.x + "px";
+                                this.left = this.position.x + 'px';
                             }
                         }
                     }
@@ -120,17 +120,17 @@
 
                 }
 
-                if (platform == "android") {
+                if (platform == 'android') {
                     this.top = this.position.y - 60;
-                } else if (platform == "iOS") {
+                } else if (platform == 'iOS') {
                     this.top = this.position.y - 20;
                 }
 
                 var translate = 'translate(0px, ' + parseInt(this.position.height) + 'px)';
-                this._animationFn(el, "1", translate, 'ease-in');
+                this._animationFn(el, '1', translate, 'ease-in');
 
             },
-            _animationFn (el, opacity, translate, timing, fn) {
+            _animationFn(el, opacity, translate, timing, fn) {
                 animation.transition(el, {
                     styles: {
                         opacity: opacity,
@@ -147,12 +147,12 @@
             _maskClick() {
                 var el = this.$refs.dropdownBox;
                 var translate = 'scale(0.9, 0.9)';
-                this._animationFn(el, "0", translate, 'ease-out', () => {
+                this._animationFn(el, '0', translate, 'ease-out', () => {
                     this.visible = false;
-                    this.$emit("onMaskClick");
+                    this.$emit('onMaskClick');
                 });
             }
         }
-    }
+    };
 </script>
 

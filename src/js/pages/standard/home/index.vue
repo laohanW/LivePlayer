@@ -3,12 +3,13 @@
 </template>
 
 <script>
-    if(process.env.NODE_ENV === 'development')require('Config')
+    if (process.env.NODE_ENV === 'development')require('Config')
     import streamPage from '../common/streamPage.vue'
+
     export default {
-        components:{streamPage},
-        created(){
+        components: {streamPage},
+        created() {
 
         }
-    }
+    };
 </script>

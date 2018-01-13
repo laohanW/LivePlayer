@@ -21,28 +21,27 @@
 <script>
     module.exports = {
         data() {
-            return {
-            }
+            return {}
         },
         props: {
             value: {
                 type: Number,
-                default: 1,
+                default: 1
             },
             step: {
                 type: Number,
-                default: 1,
+                default: 1
             },
             controlSize: {
-                default: 70,
+                default: 70
             },
-            min:{
-                type:Number,
-                default:0
+            min: {
+                type: Number,
+                default: 0
             },
-            max:{
-                type:Number,
-                default:100
+            max: {
+                type: Number,
+                default: 100
             }
         },
         computed: {
@@ -52,34 +51,33 @@
                 return {
                     // TODO: 数字的宽度？
                     width: digitWidth * this.value.toString().length + extraWidth,
-                    "margin-left": digitWidth,
-                    "margin-right": digitWidth - extraWidth,
+                    'margin-left': digitWidth,
+                    'margin-right': digitWidth - extraWidth
                 }
             },
             controlStyle() {
                 return {
                     width: this.controlSize,
                     height: this.controlSize,
-                    "line-height": this.controlSize,
+                    'line-height': this.controlSize
                 }
             }
         },
         watch: {
             value(newValue) {
                 this.$emit('input', Number(newValue));
-                this.$emit("change",this.value);
+                this.$emit('change', this.value);
             }
         },
         methods: {
             minusClicked() {
-                if(this.value <= Number(this.min)) return;
+                if (this.value <= Number(this.min)) return;
                 this.value = Number(this.value) - Number(this.step);
-
             },
             plusClicked() {
-                if(this.value >= Number(this.max)) return;
+                if (this.value >= Number(this.max)) return;
                 this.value = Number(this.value) + Number(this.step);
-            },
+            }
         }
-    }
+    };
 </script>

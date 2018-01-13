@@ -66,41 +66,41 @@
             }
         },
         computed: {
-            isNeedShow () {
-                setTimeout(()=>{
+            isNeedShow() {
+                setTimeout(() => {
                     this.appearPopup(this.show);
-                },50);
+                }, 50);
                 return this.show;
             },
-            popupHeight () {
+            popupHeight() {
                 this.appearPopup(this.show, 150);
                 return this.height;
             },
-            popupStyle () {
-                const { pos, width, height, backgroundColor } = this;
+            popupStyle() {
+                const {pos, width, height, backgroundColor} = this;
                 let style = {
                     width: `${width}px`,
                     backgroundColor: backgroundColor
                 };
-                if(pos=="top"){
+                if (pos === 'top') {
                     style = Object.assign(style, {
                         top: `${-height}px`,
                         height: `${height}px`
                     });
                 }
-                if(pos=="bottom"){
-                    style = Object.assign(style,{
+                if (pos === 'bottom') {
+                    style = Object.assign(style, {
                         bottom: `${-height}px`,
                         height: `${height}px`
                     })
                 }
-                if(pos=="left"){
-                    style = Object.assign(style,{
+                if (pos === 'left') {
+                    style = Object.assign(style, {
                         left: `${-width}px`
                     });
                 }
-                if(pos=="right"){
-                    style =Object.assign(style,{
+                if (pos === 'right') {
+                    style = Object.assign(style, {
                         right: `${-width}px`
                     })
                 }
@@ -108,11 +108,11 @@
             }
         },
         methods: {
-            _maskClick () {
-                this.show=false;
+            _maskClick() {
+                this.show = false;
                 this.appearPopup(false);
             },
-            appearPopup (bool) {
+            appearPopup(bool) {
                 const popupEl = this.$refs['popupBox'];
                 if (!popupEl) {
                     return;
@@ -121,15 +121,15 @@
                     styles: {
                         transform: this.getTransform(this.pos, this.width, this.height, !bool)
                     },
-                    duration:300,
-                    delay: 0,
+                    duration: 300,
+                    delay: 0
                 }, () => {
                     if (!bool) {
-                        this.$emit('maskClick', { pos: this.pos });
+                        this.$emit('maskClick', {pos: this.pos});
                     }
                 });
             },
-            getTransform (pos, width, height, bool) {
+            getTransform(pos, width, height, bool) {
                 let _size = pos === 'top' || pos === 'bottom' ? height : width;
                 let _transform;
                 bool && (_size = 0);
@@ -150,5 +150,5 @@
                 return _transform;
             }
         }
-    }
+    };
 </script>

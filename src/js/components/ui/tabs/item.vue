@@ -2,56 +2,56 @@
   <div class="container" @click="onclickitem">
      <image src="http://gtms03.alicdn.com/tps/i3/TB1mdsiMpXXXXXpXXXXNw4JIXXX-640-4.png" class="top-line"></image>
     <image :src="icon" class="tab-icon"></image>
-    <text :style="{ color: titleColor }" class="tab-text">{{title}}</text> 
+    <text :style="{ color: titleColor }" class="tab-text">{{title}}</text>
   </div>
 </template>
 
 <style scoped>
 .container {
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
 }
 
 .top-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
 }
 
 .tab-icon {
-  margin-top: 5;
-  width: 49;
-  height: 49
+    margin-top: 5px;
+    width: 49px;
+    height: 49px;
 }
 
 .tab-text {
-  margin-top: 5;
-  text-align: center;
-  font-size: 20;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 20px;
 }
 </style>
 
 <script>
-export default {
-  props: {
-    index: { default: 0 },
-    title: { default: '' },
-    titleColor: { default: '#000000' },
-    icon: { default: '' },
-    backgroundColor: { default: '#ffffff' }
-  },
-  methods: {
-    onclickitem (e) {
-      var params = {
-        index: this.index
-      };
-      this.$emit('tabItemOnClick', params);
-    }
-  }
-}
+    export default {
+        props: {
+            index: {default: 0},
+            title: {default: ''},
+            titleColor: {default: '#000000'},
+            icon: {default: ''},
+            backgroundColor: {default: '#ffffff'}
+        },
+        methods: {
+            onclickitem(e) {
+                var params = {
+                    index: this.index
+                };
+                this.$emit('tabItemOnClick', params);
+            }
+        }
+    };
 </script>

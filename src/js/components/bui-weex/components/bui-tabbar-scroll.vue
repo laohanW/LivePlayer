@@ -39,8 +39,8 @@
             selectedColor: {default: '#3399ff'},
             unselectedColor: {default: '#8a8a8a'},
             titleSize: {},
-            top: {default: "0px"}, //内容区域离顶部的距离
-            selectedIndex: {default: 0} //当前选中的索引
+            top: {default: '0px'}, // 内容区域离顶部的距离
+            selectedIndex: {default: 0} // 当前选中的索引
         },
         data: function () {
             return {}
@@ -60,12 +60,11 @@
             select: function (index) {
                 for (var i = 0; i < this.tabItems.length; i++) {
                     var tabItem = this.tabItems[i];
-                    if (i == index) {
+                    if (i === index) {
                         tabItem.selected = true;
                         tabItem.titleColor = this.selectedColor;
                         tabItem.visibility = 'visible';
-                    }
-                    else {
+                    } else {
                         tabItem.selected = false;
                         tabItem.titleColor = this.unselectedColor;
                         tabItem.visibility = 'hidden';
@@ -73,5 +72,5 @@
                 }
             }
         }
-    }
+    };
 </script>

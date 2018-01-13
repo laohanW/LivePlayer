@@ -113,252 +113,252 @@
   const isIos = Utils.env.isIOS();
 
   export default {
-    props: {
-      tabTitles: {
-        type: Array,
-        default: () => ([])
-      },
-      panDist: {
-        type: Number,
-        default: 200
-      },
-      spmC: {
-        type: [String, Number],
-        default: ''
-      },
-      titleUseSlot: {
-        type: Boolean,
-        default: false
-      },
-      tabStyles: {
-        type: Object,
-        default: () => ({
-          bgColor: '#FFFFFF',
-          titleColor: '#666666',
-          activeTitleColor: '#3D3D3D',
-          activeBgColor: '#FFFFFF',
-          isActiveTitleBold: true,
-          iconWidth: 70,
-          iconHeight: 70,
-          width: 160,
-          height: 120,
-          fontSize: 24,
-          hasActiveBottom: true,
-          activeBottomColor: '#FFC900',
-          activeBottomWidth: 120,
-          activeBottomHeight: 6,
-          textPaddingLeft: 10,
-          textPaddingRight: 10,
-          leftOffset: 0
-        })
-      },
-      titleType: {
-        type: String,
-        default: 'icon'
-      },
-      tabPageHeight: {
-        type: [String, Number],
-        default: 1334
-      },
-      isTabView: {
-        type: Boolean,
-        default: true
-      },
-      needSlider: {
-        type: Boolean,
-        default: true
-      },
-      duration: {
-        type: [Number, String],
-        default: 300
-      },
-      timingFunction: {
-        type: String,
-        default: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      },
-      wrapBgColor: {
-        type: String,
-        default: '#f2f3f4'
-      }
-    },
-    data: () => ({
-      currentPage: 0,
-      isMoving: false,
-      startTime: 0,
-      deltaX: 0,
-      translateX: 0,
-      startPosX: 0,
-      startPosY: 0,
-      judge: 'INITIAL'
-    }),
-    created () {
-      const { titleType, tabStyles } = this;
-      if (titleType === 'iconFont' && tabStyles.iconFontUrl) {
-        dom.addRule('fontFace', {
-          'fontFamily': "wxcIconFont",
-          'src': `url(${tabStyles.iconFontUrl})`
-        });
-      }
-    },
-    mounted () {
-      if (swipeBack && swipeBack.forbidSwipeBack) {
-        swipeBack.forbidSwipeBack(true);
-      }
-      if (supportsEBForIos && this.needSlider && this.isTabView) {
-        setTimeout(() => {
-          const tabPageEl = this.$refs['tab-page-wrap'];
-          if (tabPageEl && tabPageEl.ref) {
-            expressionBinding.enableBinding(tabPageEl.ref, 'pan');
-            this.bindExp(tabPageEl);
-          }
-        }, 20);
-      }
-    },
-    methods: {
-      next () {
-        let page = this.currentPage;
-        if (page < this.tabTitles.length - 1) {
-          page++;
-        }
-        this.setPage(page);
-      },
-      prev () {
-        let page = this.currentPage;
-        if (page > 0) {
-          page--;
-        }
-        this.setPage(page);
-      },
-      startHandler (e) {
-        if (supportsEBForIos && e.state === 'start' && this.isTabView && this.needSlider) {
-          // list下拉和到最下面问题修复
-          setTimeout(() => {
-            this.bindExp(this.$refs['tab-page-wrap']);
-          }, 0)
-        }
-      },
-      bindExp (element) {
-        if (!this.isMoving && element && element.ref) {
-          const tabElement = this.$refs['tab-container'];
-          const { currentPage, panDist } = this;
-          const dist = currentPage * 750;
-          // x-dist
-          const args = [{
-            element: tabElement.ref,
-            property: 'transform.translateX',
-            expression: `{\"type\":\"-\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${dist}}]}`
-          }];
-          expressionBinding.createBinding(element.ref, 'pan', '', args, e => {
-            const { deltaX, state } = e;
-            if (state === 'end') {
-              if (deltaX < -panDist) {
-                this.next();
-              } else if (deltaX > panDist) {
-                this.prev();
-              } else {
-                this.setPage(currentPage);
-              }
-            }
-          });
-        }
-      },
-      setPage (page, url = null, animated = true) {
-        if (!this.isTabView) {
-          this.jumpOut(url);
-          return;
-        }
-        if (this.isMoving === true) {
-          return;
-        }
-        this.isMoving = true;
-        const previousPage = this.currentPage;
-        const currentTabEl = this.$refs[`wxc-tab-title-${page}`][0];
-        const { width } = this.tabStyles;
-        const appearNum = parseInt(750 / width);
-        const tabsNum = this.tabTitles.length;
-        const offset = page > appearNum ? -(750 - width) / 2 : -width * 2;
-
-        if (appearNum < tabsNum) {
-          (previousPage > appearNum || page > 1) && dom.scrollToElement(currentTabEl, {
-            offset, animated
-          });
-
-          page <= 1 && previousPage > page && dom.scrollToElement(currentTabEl, {
-            offset: -width * page,
-            animated
-          });
-        }
-
-        this.isMoving = false;
-        this.currentPage = page;
-
-        if (isIos) {
-          // 高版本ios 手淘上面会有不固定情况，hack一下
-          setTimeout(() => {
-            this._animateTransformX(page, animated);
-            this.$emit('wxcTabPageCurrentTabSelected', { page });
-          }, 10);
-        } else {
-          this._animateTransformX(page, animated);
-          this.$emit('wxcTabPageCurrentTabSelected', { page });
-        }
-      },
-      jumpOut (url) {
-        url && Utils.goToH5Page(url)
-      },
-      _animateTransformX (page, animated) {
-        const { duration, timingFunction } = this;
-        const computedDur = animated ? duration : 0.00001;
-        const containerEl = this.$refs[`tab-container`];
-        const dist = page * 750;
-        animation.transition(containerEl, {
-          styles: {
-            transform: `translateX(${-dist}px)`
+      props: {
+          tabTitles: {
+              type: Array,
+              default: () => ([])
           },
-          duration: computedDur,
-          timingFunction,
-          delay: 0
-        }, () => {
-        });
-      },
-      _onTouchStart (e) {
-        if (supportsEB || !this.isTabView || !this.needSlider) {
-          return;
-        }
-        this.startPosX = this._getTouchXPos(e);
-        this.startPosY = this._getTouchYPos(e);
-        this.deltaX = 0;
-        this.startTime = new Date().getTime();
-      },
-      _onTouchMove (e) {
-        if (supportsEB || !this.isTabView || !this.needSlider) {
-          return;
-        }
-        this.deltaX = this._getTouchXPos(e) - this.startPosX;
-        this.deltaY = Math.abs(this._getTouchYPos(e) - this.startPosY + 1);
-        if (this.judge === 'INITIAL' && Math.abs(this.deltaX) / this.deltaY > 1.73) {
-          this.judge = 'SLIDE_ING';
-        }
-      },
-      _onTouchEnd () {
-        if (supportsEB || !this.isTabView || !this.needSlider) {
-          return;
-        }
-        if (this.judge === 'SLIDE_ING') {
-          if (this.deltaX < -50) {
-            this.next();
-          } else if (this.deltaX > 50) {
-            this.prev();
+          panDist: {
+              type: Number,
+              default: 200
+          },
+          spmC: {
+              type: [String, Number],
+              default: ''
+          },
+          titleUseSlot: {
+              type: Boolean,
+              default: false
+          },
+          tabStyles: {
+              type: Object,
+              default: () => ({
+                  bgColor: '#FFFFFF',
+                  titleColor: '#666666',
+                  activeTitleColor: '#3D3D3D',
+                  activeBgColor: '#FFFFFF',
+                  isActiveTitleBold: true,
+                  iconWidth: 70,
+                  iconHeight: 70,
+                  width: 160,
+                  height: 120,
+                  fontSize: 24,
+                  hasActiveBottom: true,
+                  activeBottomColor: '#FFC900',
+                  activeBottomWidth: 120,
+                  activeBottomHeight: 6,
+                  textPaddingLeft: 10,
+                  textPaddingRight: 10,
+                  leftOffset: 0
+              })
+          },
+          titleType: {
+              type: String,
+              default: 'icon'
+          },
+          tabPageHeight: {
+              type: [String, Number],
+              default: 1334
+          },
+          isTabView: {
+              type: Boolean,
+              default: true
+          },
+          needSlider: {
+              type: Boolean,
+              default: true
+          },
+          duration: {
+              type: [Number, String],
+              default: 300
+          },
+          timingFunction: {
+              type: String,
+              default: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          },
+          wrapBgColor: {
+              type: String,
+              default: '#f2f3f4'
           }
-        }
-        this.judge = 'INITIAL';
       },
-      _getTouchXPos (e) {
-        return e.changedTouches[0]['pageX'];
+      data: () => ({
+          currentPage: 0,
+          isMoving: false,
+          startTime: 0,
+          deltaX: 0,
+          translateX: 0,
+          startPosX: 0,
+          startPosY: 0,
+          judge: 'INITIAL'
+      }),
+      created() {
+          const {titleType, tabStyles} = this;
+          if (titleType === 'iconFont' && tabStyles.iconFontUrl) {
+              dom.addRule('fontFace', {
+                  'fontFamily': 'wxcIconFont',
+                  'src': `url(${tabStyles.iconFontUrl})`
+              });
+          }
       },
-      _getTouchYPos (e) {
-        return e.changedTouches[0]['pageY'];
+      mounted() {
+          if (swipeBack && swipeBack.forbidSwipeBack) {
+              swipeBack.forbidSwipeBack(true);
+          }
+          if (supportsEBForIos && this.needSlider && this.isTabView) {
+              setTimeout(() => {
+                  const tabPageEl = this.$refs['tab-page-wrap'];
+                  if (tabPageEl && tabPageEl.ref) {
+                      expressionBinding.enableBinding(tabPageEl.ref, 'pan');
+                      this.bindExp(tabPageEl);
+                  }
+              }, 20);
+          }
+      },
+      methods: {
+          next() {
+              let page = this.currentPage;
+              if (page < this.tabTitles.length - 1) {
+                  page++;
+              }
+              this.setPage(page);
+          },
+          prev() {
+              let page = this.currentPage;
+              if (page > 0) {
+                  page--;
+              }
+              this.setPage(page);
+          },
+          startHandler(e) {
+              if (supportsEBForIos && e.state === 'start' && this.isTabView && this.needSlider) {
+                  // list下拉和到最下面问题修复
+                  setTimeout(() => {
+                      this.bindExp(this.$refs['tab-page-wrap']);
+                  }, 0)
+              }
+          },
+          bindExp(element) {
+              if (!this.isMoving && element && element.ref) {
+                  const tabElement = this.$refs['tab-container'];
+                  const {currentPage, panDist} = this;
+                  const dist = currentPage * 750;
+                  // x-dist
+                  const args = [{
+                      element: tabElement.ref,
+                      property: 'transform.translateX',
+                      expression: `{\"type\":\"-\",\"children\":[{\"type\":\"Identifier\",\"value\":\"x\"},{\"type\":\"NumericLiteral\",\"value\":${dist}}]}`
+                  }];
+                  expressionBinding.createBinding(element.ref, 'pan', '', args, e => {
+                      const {deltaX, state} = e;
+                      if (state === 'end') {
+                          if (deltaX < -panDist) {
+                              this.next();
+                          } else if (deltaX > panDist) {
+                              this.prev();
+                          } else {
+                              this.setPage(currentPage);
+                          }
+                      }
+                  });
+              }
+          },
+          setPage(page, url = null, animated = true) {
+              if (!this.isTabView) {
+                  this.jumpOut(url);
+                  return;
+              }
+              if (this.isMoving === true) {
+                  return;
+              }
+              this.isMoving = true;
+              const previousPage = this.currentPage;
+              const currentTabEl = this.$refs[`wxc-tab-title-${page}`][0];
+              const {width} = this.tabStyles;
+              const appearNum = parseInt(750 / width);
+              const tabsNum = this.tabTitles.length;
+              const offset = page > appearNum ? -(750 - width) / 2 : -width * 2;
+
+              if (appearNum < tabsNum) {
+                  (previousPage > appearNum || page > 1) && dom.scrollToElement(currentTabEl, {
+                      offset, animated
+                  });
+
+                  page <= 1 && previousPage > page && dom.scrollToElement(currentTabEl, {
+                      offset: -width * page,
+                      animated
+                  });
+              }
+
+              this.isMoving = false;
+              this.currentPage = page;
+
+              if (isIos) {
+                  // 高版本ios 手淘上面会有不固定情况，hack一下
+                  setTimeout(() => {
+                      this._animateTransformX(page, animated);
+                      this.$emit('wxcTabPageCurrentTabSelected', {page});
+                  }, 10);
+              } else {
+                  this._animateTransformX(page, animated);
+                  this.$emit('wxcTabPageCurrentTabSelected', {page});
+              }
+          },
+          jumpOut(url) {
+              url && Utils.goToH5Page(url)
+          },
+          _animateTransformX(page, animated) {
+              const {duration, timingFunction} = this;
+              const computedDur = animated ? duration : 0.00001;
+              const containerEl = this.$refs['tab-container'];
+              const dist = page * 750;
+              animation.transition(containerEl, {
+                  styles: {
+                      transform: `translateX(${-dist}px)`
+                  },
+                  duration: computedDur,
+                  timingFunction,
+                  delay: 0
+              }, () => {
+              });
+          },
+          _onTouchStart(e) {
+              if (supportsEB || !this.isTabView || !this.needSlider) {
+                  return;
+              }
+              this.startPosX = this._getTouchXPos(e);
+              this.startPosY = this._getTouchYPos(e);
+              this.deltaX = 0;
+              this.startTime = new Date().getTime();
+          },
+          _onTouchMove(e) {
+              if (supportsEB || !this.isTabView || !this.needSlider) {
+                  return;
+              }
+              this.deltaX = this._getTouchXPos(e) - this.startPosX;
+              this.deltaY = Math.abs(this._getTouchYPos(e) - this.startPosY + 1);
+              if (this.judge === 'INITIAL' && Math.abs(this.deltaX) / this.deltaY > 1.73) {
+                  this.judge = 'SLIDE_ING';
+              }
+          },
+          _onTouchEnd() {
+              if (supportsEB || !this.isTabView || !this.needSlider) {
+                  return;
+              }
+              if (this.judge === 'SLIDE_ING') {
+                  if (this.deltaX < -50) {
+                      this.next();
+                  } else if (this.deltaX > 50) {
+                      this.prev();
+                  }
+              }
+              this.judge = 'INITIAL';
+          },
+          _getTouchXPos(e) {
+              return e.changedTouches[0]['pageX'];
+          },
+          _getTouchYPos(e) {
+              return e.changedTouches[0]['pageY'];
+          }
       }
-    }
   };
 </script>

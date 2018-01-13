@@ -127,10 +127,10 @@
       }
     },
     mounted () {
-      this.block1 = this.$refs['slide-block-1'];        // 左侧滑块
-      this.block2 = this.$refs['slide-block-2'];        // 右侧滑块
-      this.valueBar = this.$refs['value-bar'];          // 黄色值条
-      this.barContainer = this.$refs['bar-container'];  // 滚动条容器
+      this.block1 = this.$refs['slide-block-1'];// 左侧滑块
+      this.block2 = this.$refs['slide-block-2'];// 右侧滑块
+      this.valueBar = this.$refs['value-bar'];// 黄色值条
+      this.barContainer = this.$refs['bar-container'];// 滚动条容器
 
       if (!this.range) {
         this.diffX1 = this._getDiffX(this.value || this.defaultValue);
@@ -149,8 +149,8 @@
         this.timeout = 250;
       }
       if (this.range) {
-        this.selectRange = this.value || this.defaultValue;                    // 初始化范围选择返回数据
-        this.minDiffX = (this.minDiff / (this.max - this.min)) * this.length;  // 滑块1、2之前最小间距
+        this.selectRange = this.value || this.defaultValue;// 初始化范围选择返回数据
+        this.minDiffX = (this.minDiff / (this.max - this.min)) * this.length;// 滑块1、2之前最小间距
       }
       // 由于weex在mounted后渲染是异步的不能确保元素渲染完成，需要异步执行
       setTimeout(() => {

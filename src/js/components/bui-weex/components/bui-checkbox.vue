@@ -12,58 +12,58 @@
 <script>
     module.exports = {
         props: {
-            "direction": {
+            'direction': {
                 type: String,
                 default: 'horizontal' // horizontal | vertical
             },
-            "items": {
+            'items': {
                 type: Array,
                 default: []
             },
-            "fontSize":{
-              type:String,
-                default:"32px"
-            },
-            "iconSize":{
-                type:String,
-                default:"48px"
-            },
-            "selectedColor":{
+            'fontSize': {
                 type: String,
-                default:"#00cc66"
+                default: '32px'
             },
-            "unSelectedColor":{
+            'iconSize': {
                 type: String,
-                default:"#9ea7b4"
+                default: '48px'
+            },
+            'selectedColor': {
+                type: String,
+                default: '#00cc66'
+            },
+            'unSelectedColor': {
+                type: String,
+                default: '#9ea7b4'
             }
         },
-        computed:{
-            changeDirection(){
-                return this.direction=="horizontal"? "flex-row":"flex-column";
+        computed: {
+            changeDirection() {
+                return this.direction === 'horizontal' ? 'flex-row' : 'flex-column';
             }
         },
-        data () {
+        data() {
             return {
                 selectItems: [],
                 checkboxItems: []
             }
         },
         methods: {
-            select (v) {
+            select(v) {
                 var self = this;
                 v.select = !v.select;
 
-                //选择组数据
+                // 选择组数据
                 var newAry = [];
                 self.checkboxItems.forEach(function (val, i) {
-                    if(val.select) newAry.push(val);
+                    if (val.select) newAry.push(val);
                 });
-                this.$emit("change", v, newAry);
+                this.$emit('change', v, newAry);
             }
         },
-        created () {
+        created() {
             this.checkboxItems = JSON.parse(JSON.stringify(this.items));
         }
-    }
+    };
 </script>
 <style lang="sass" src="../css/radio.scss"></style>

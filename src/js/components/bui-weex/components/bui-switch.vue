@@ -14,23 +14,23 @@
 <script>
     module.exports = {
         props: {
-            "title": {
+            'title': {
                 type: String
             },
-            "checked": {
+            'checked': {
                 type: Boolean,
                 default: false
             },
-            "disabled": {
+            'disabled': {
                 type: Boolean,
                 default: false
             }
         },
         methods: {
-            onchange (event) {
+            onchange(event) {
                 this.checked = event.value;
-                this.$emit("change", this.checked);
+                this.$emit('change', this.checked);
             }
         }
-    }
+    };
 </script>

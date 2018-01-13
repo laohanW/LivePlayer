@@ -11,5 +11,5 @@
             type: {default: 'success'},
             value: {default: ''}
         }
-    }
+    };
 </script>

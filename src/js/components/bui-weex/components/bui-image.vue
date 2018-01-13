@@ -11,14 +11,14 @@
     module.exports = {
         computed: {
             imagePath() {
-                if (this.src.startsWith("http")) {
+                if (this.src.startsWith('http')) {
                     return this.src;
                 }
                 return this._getContext() + this.src;
             },
             placeholderPath() {
-                if (this.placeholder!="") {
-                    if (this.placeholder.startsWith("http")) {
+                if (this.placeholder != '') {
+                    if (this.placeholder.startsWith('http')) {
                         return this.placeholder;
                     }
                     return this._getContext() + this.placeholder;
@@ -33,14 +33,14 @@
             },
             resize: {
                 type: String,
-                default: "stretch"
+                default: 'stretch'
             },
             placeholder: {
                 type: String,
-                default: ""
+                default: ''
             },
             radius: {
-                default: "0px"
+                default: '0px'
             }
         },
         methods: {
@@ -50,14 +50,14 @@
             _load() {
                 this.$emit('load');
             },
-            _getContext(){
+            _getContext() {
                 var bundleUrl = weex.config.bundleUrl;
                 var url = bundleUrl.split('/').slice(0, -1).join('/');
-                if (bundleUrl.indexOf("weex.html") > 0) {
-                    url += "/dist/";
+                if (bundleUrl.indexOf('weex.html') > 0) {
+                    url += '/dist/';
                 }
                 return url;
             }
         }
-    }
+    };
 </script>

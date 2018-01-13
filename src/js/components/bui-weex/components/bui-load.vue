@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    var animation = weex.requireModule('animation');
+//    var animation = weex.requireModule('animation');
     module.exports = {
         props: {
             message: {
@@ -19,7 +19,7 @@
             value: {
                 type: Boolean,
                 default: false
-            },
+            }
         },
         data: function () {
             return {
@@ -34,18 +34,18 @@
                 this.$emit('input', val);
             }
         },
-        mounted(){
+        mounted() {
             if (this.value) {
                 this.visible = true;
             }
         },
         methods: {
-            _maskClick(){
+            _maskClick() {
                 this.visible = false;
-                this.$emit("maskClick");
+                this.$emit('maskClick');
             }
         }
-    }
+    };
 </script>
 
 <style lang="sass" src="../css/loading.scss"></style>

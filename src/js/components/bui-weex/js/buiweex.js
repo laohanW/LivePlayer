@@ -4,55 +4,55 @@
 const modal = weex.requireModule('modal');
 const animation = weex.requireModule('animation');
 const navigator = weex.requireModule('navigator');
-const navigatorEx = weex.requireModule("NavigatorExModule");
+const navigatorEx = weex.requireModule('NavigatorExModule');
 const stream = weex.requireModule('stream');
 
 let buiweex = {
-    //components下的组件
-    buiActionSheet: require("../components/bui-actionsheet.vue"),
-    buiButton: require("../components/bui-button.vue"),
-    buiCheckbox: require("../components/bui-checkbox.vue"),
-    buiDialog: require("../components/bui-dialog.vue"),
-    buiDropdown: require("../components/bui-dropdown.vue"),
-    buiHeader: require("../components/bui-header.vue"),
-    buiIcon: require("../components/bui-icon.vue"),
-    buiImage: require("../components/bui-image.vue"),
-    buiLazyRender: require("../components/bui-lazy-render.vue"),
-    buiLoad: require("../components/bui-load.vue"),
-    buiMask: require("../components/bui-mask.vue"),
-    buiPanel: require("../components/bui-panel.vue"),
-    buiRadio: require("../components/bui-radio.vue"),
-    buiSearchbarCenter: require("../components/bui-searchbar-center.vue"),
-    buiSearchbarLeft: require("../components/bui-searchbar-left.vue"),
-    buiSliderBar: require("../components/bui-slider-bar.vue"),
-    buiSwitch: require("../components/bui-switch.vue"),
-    buiTabbar: require("../components/bui-tabbar.vue"),
-    buiTabbarItem: require("../components/bui-tabbar-item.vue"),
-    buiTabbarItemA: require("../components/bui-tabbar-item-a.vue"),
-    buiTabbarScroll: require("../components/bui-tabbar-scroll.vue"),
-    buiTabbarScrollItem: require("../components/bui-tabbar-scroll-item.vue"),
-    buiTip: require("../components/bui-tip.vue"),
-    buiVideo: require("../components/bui-video.vue"),
-    buiContent: require("../components/bui-content.vue"),
-    buiContentScroll: require("../components/bui-content-scroll.vue"),
-    buiImageSlider: require("../components/bui-image-slider.vue"),
-    buiCell: require("../components/bui-cell.vue"),
-    buiPopup: require("../components/bui-popup.vue"),
-    buiNumberInput: require("../components/bui-number-input.vue"),
+    // components下的组件
+    buiActionSheet: require('../components/bui-actionsheet.vue'),
+    buiButton: require('../components/bui-button.vue'),
+    buiCheckbox: require('../components/bui-checkbox.vue'),
+    buiDialog: require('../components/bui-dialog.vue'),
+    buiDropdown: require('../components/bui-dropdown.vue'),
+    buiHeader: require('../components/bui-header.vue'),
+    buiIcon: require('../components/bui-icon.vue'),
+    buiImage: require('../components/bui-image.vue'),
+    buiLazyRender: require('../components/bui-lazy-render.vue'),
+    buiLoad: require('../components/bui-load.vue'),
+    buiMask: require('../components/bui-mask.vue'),
+    buiPanel: require('../components/bui-panel.vue'),
+    buiRadio: require('../components/bui-radio.vue'),
+    buiSearchbarCenter: require('../components/bui-searchbar-center.vue'),
+    buiSearchbarLeft: require('../components/bui-searchbar-left.vue'),
+    buiSliderBar: require('../components/bui-slider-bar.vue'),
+    buiSwitch: require('../components/bui-switch.vue'),
+    buiTabbar: require('../components/bui-tabbar.vue'),
+    buiTabbarItem: require('../components/bui-tabbar-item.vue'),
+    buiTabbarItemA: require('../components/bui-tabbar-item-a.vue'),
+    buiTabbarScroll: require('../components/bui-tabbar-scroll.vue'),
+    buiTabbarScrollItem: require('../components/bui-tabbar-scroll-item.vue'),
+    buiTip: require('../components/bui-tip.vue'),
+    buiVideo: require('../components/bui-video.vue'),
+    buiContent: require('../components/bui-content.vue'),
+    buiContentScroll: require('../components/bui-content-scroll.vue'),
+    buiImageSlider: require('../components/bui-image-slider.vue'),
+    buiCell: require('../components/bui-cell.vue'),
+    buiPopup: require('../components/bui-popup.vue'),
+    buiNumberInput: require('../components/bui-number-input.vue'),
     /**
      * 弹出吐司信息(自动消失)
      * @param msg {string} 提示文本
      */
     toast(msg) {
         let type = typeof msg;
-        if(type =='object'){
+        if (type === 'object') {
             msg = type;
         }
-        if(type == 'boolean'){
-            msg = (msg == true?'true':'false');
+        if (type === 'boolean') {
+            msg = (msg === true ? 'true' : 'false');
         }
         modal.toast({
-            message: msg.toString() || "",
+            message: msg.toString() || '',
             duration: 0.4
         });
     },
@@ -65,20 +65,21 @@ let buiweex = {
      * @param option.okTitle {string} 确定按钮文本
      */
     alert(msg, callback, option) {
-        let okTitle = "确定";
+        let okTitle = '确定';
         if (option) {
-            if (option.okTitle)
+            if (option.okTitle) {
                 okTitle = option.okTitle;
+            }
         }
         let type = typeof msg;
-        if(type =='object'){
+        if (type === 'object') {
             msg = type;
         }
-        if(type == 'boolean'){
-            msg = (msg == true?'true':'false');
+        if (type === 'boolean') {
+            msg = (msg === true ? 'true' : 'false');
         }
         modal.alert({
-            message: msg.toString() || "",
+            message: msg.toString() || '',
             duration: 0.4,
             okTitle: okTitle
         }, value => {
@@ -95,18 +96,20 @@ let buiweex = {
      * @param option.cancelTitle {string} 取消按钮文本
      */
     confirm(msg, callback, option) {
-        let okTitle = "确定", cancelTitle = "取消";
+        let okTitle = '确定', cancelTitle = '取消';
         if (option) {
-            if (option.okTitle)
+            if (option.okTitle) {
                 okTitle = option.okTitle;
-            if (option.cancelTitle)
+            }
+            if (option.cancelTitle) {
                 cancelTitle = option.cancelTitle;
+            }
         }
         modal.confirm({
-            message: msg || "",
+            message: msg || '',
             duration: 0.4,
             okTitle: okTitle,
-            cancelTitle: cancelTitle,
+            cancelTitle: cancelTitle
         }, value => {
             callback && callback(value);
         });
@@ -187,17 +190,17 @@ let buiweex = {
      * @param params {object} 传递的参数
      */
     push(url, params) {
-        let paramsStr = "";
+        let paramsStr = '';
         if (params) {
             for (let key in params) {
-                paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
+                paramsStr += key + '=' + encodeURIComponent(params[key]) + '&';
             }
         }
         if (url.indexOf('?') < 0) {
-            url += "?";
+            url += '?';
         }
         url += paramsStr;
-        //link平台中使用navigatorEx,debugtool中使用navigator
+        // link平台中使用navigatorEx,debugtool中使用navigator
         try {
             navigatorEx.push(url);
         } catch (ex) {
@@ -228,7 +231,7 @@ let buiweex = {
     getPageParams() {
         let params = {};
         let url = weex.config.bundleUrl;
-        let index = url.indexOf("?");
+        let index = url.indexOf('?');
         if (index > 0) {
             let query = url.substring(index + 1);
             let temp = query.split('&');
@@ -254,19 +257,19 @@ let buiweex = {
      * @param params.data {object} 请求数据，带到 HTTP body中
      * @return {Promise.<TResult>} 成功: resolve(data, status, statusText), 失败: reject(status, statusText)
      */
-    post(params){
-        let url = params.url || "";
+    post(params) {
+        let url = params.url || '';
         let headers = params.headers || {};
         let data = params.data;
-        let type = params.type || "json";
-        if (typeof data == "object") {
+        let type = params.type || 'json';
+        if (typeof data === 'object') {
             data = JSON.stringify(data);
         }
         // headers["Content-Type"]="application/x-www-form-urlencoded";
         // headers["Content-Type"]="application/json";
         return new Promise((resolve, reject) => {
             stream.fetch({
-                method: "POST",
+                method: 'POST',
                 type: type,
                 url: url,
                 headers: headers,
@@ -291,22 +294,22 @@ let buiweex = {
      * @param params.data {object} 请求数据，自动拼接到url后面
      * @return {Promise.<TResult>} 成功: resolve(data, status, statusText), 失败: reject(status, statusText)
      */
-    get(params){
+    get(params) {
         return new Promise((resolve, reject) => {
-            let url = params.url || "";
+            let url = params.url || '';
             let headers = params.headers || {};
             let data = params.data || {};
-            let type = params.type || "json";
-            if (!url.includes("?")) {
-                url += "?";
+            let type = params.type || 'json';
+            if (!url.includes('?')) {
+                url += '?';
             }
-            if (typeof data == "object") {
+            if (typeof data === 'object') {
                 for (let key in data) {
                     url += `&${key}=${encodeURIComponent(data[key])}`;
                 }
             }
             stream.fetch({
-                method: "GET",
+                method: 'GET',
                 type: type,
                 url: url,
                 headers: headers
@@ -351,9 +354,9 @@ let buiweex = {
                 'bui-content': that.buiContent,
                 'bui-content-scroll': that.buiContentScroll,
                 'bui-image-slider': that.buiImageSlider,
-                'bui-cell':that.buiCell,
-                'bui-popup':that.buiPopup,
-                'bui-number-input': that.buiNumberInput,
+                'bui-cell': that.buiCell,
+                'bui-popup': that.buiPopup,
+                'bui-number-input': that.buiNumberInput
             }
         });
 
@@ -379,6 +382,6 @@ let buiweex = {
 
         Vue.prototype.$get = that.get;
     }
-}
+};
 
 module.exports = buiweex;

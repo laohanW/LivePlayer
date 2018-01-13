@@ -97,7 +97,7 @@
             textStyle: Object
         },
         computed: {
-            exBtnStyle () {
+            exBtnStyle() {
                 const {type, disabled, btnStyle} = this;
                 const exBtnStyle = Object.assign(STYLE_MAP[type], btnStyle);
                 return disabled ? Object.assign(exBtnStyle, {
@@ -105,20 +105,20 @@
                     borderWidth: 0
                 }) : exBtnStyle;
             },
-            exTextStyle () {
+            exTextStyle() {
                 const {type, disabled, textStyle} = this;
                 const exTextStyle = Object.assign(TEXT_STYLE_MAP[type], textStyle);
                 return disabled ? Object.assign(exTextStyle, {color: '#ffffff'}) : exTextStyle;
             }
         },
         methods: {
-            _click (e) {
+            _click(e) {
                 if (!this.disabled) this.$emit('click', e)
             },
-            _longPress(e){
+            _longPress(e) {
                 if (!this.disabled) this.$emit('longpress', e)
             }
         }
-    }
+    };
 </script>
 

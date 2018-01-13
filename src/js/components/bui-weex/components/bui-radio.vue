@@ -12,54 +12,54 @@
 <script>
     module.exports = {
         props: {
-            "direction": {
+            'direction': {
                 type: String,
                 default: 'horizontal' // horizontal | vertical
             },
-            "items": {
+            'items': {
                 type: Array,
                 default: []
             },
-            "fontSize":{
-                type:String,
-                default:"32px"
-            },
-            "iconSize":{
-                type:String,
-                default:"48px"
-            },
-            "selectedColor":{
+            'fontSize': {
                 type: String,
-                default:"#00cc66"
+                default: '32px'
             },
-            "unSelectedColor":{
+            'iconSize': {
                 type: String,
-                default:"#9ea7b4"
+                default: '48px'
+            },
+            'selectedColor': {
+                type: String,
+                default: '#00cc66'
+            },
+            'unSelectedColor': {
+                type: String,
+                default: '#9ea7b4'
             }
         },
-        computed:{
-            changeDirection () {
-                return this.direction=="horizontal"? "flex-row":"flex-column";
+        computed: {
+            changeDirection() {
+                return this.direction === 'horizontal' ? 'flex-row' : 'flex-column';
             }
         },
         data() {
-          return{
-              radioItems:[]
-          }
+            return {
+                radioItems: []
+            }
         },
         methods: {
-            select (v) {
-                if(v.disabled) return;
+            select(v) {
+                if (v.disabled) return;
                 var self = this;
                 self.radioItems.forEach(function (val, index) {
                     val.select = false;
                 });
                 v.select = true;
-                this.$emit("change", v);
+                this.$emit('change', v);
             }
         },
-        created(){
-            this.radioItems=JSON.parse(JSON.stringify(this.items));
+        created() {
+            this.radioItems = JSON.parse(JSON.stringify(this.items));
         }
-    }
+    };
 </script>

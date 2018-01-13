@@ -29,12 +29,13 @@
 </style>
 <script>
     import buiImage from './bui-image.vue'
+
     module.exports = {
         props: {
             sliderStyle: {
                 default: {
-                    "width": "750px",
-                    "height": "400px"
+                    'width': '750px',
+                    'height': '400px'
                 }
             },
             indicatorStyle: {
@@ -53,26 +54,26 @@
                 default: true
             },
             imgResize: {
-                default: "stretch"
+                default: 'stretch'
             },
             imgWidth: {
-                default: "750px"
+                default: '750px'
             },
             imgHeight: {
-                default: "750px"
+                default: '750px'
             },
             placeholder: {
-                default: ""
+                default: ''
             }
         },
         methods: {
             _change(e) {
-                this.$emit("change", e);
+                this.$emit('change', e);
             },
             _click(e, index) {
-                this.$emit("itemClick", e, index);
+                this.$emit('itemClick', e, index);
             }
         },
-        components:{buiImage}
-    }
+        components: {buiImage}
+    };
 </script>

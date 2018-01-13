@@ -23,12 +23,12 @@
             return {}
         },
         methods: {
-            "statusChange": function (status) {
+            'statusChange': function (status) {
                 this.$emit(status);
             },
-            "progress": function (res) {
-                this.$emit("progress", res.total, res.progress);
+            'progress': function (res) {
+                this.$emit('progress', res.total, res.progress);
             }
         }
-    }
+    };
 </script>

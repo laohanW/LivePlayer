@@ -22,30 +22,30 @@
 <script>
     module.exports = {
         props: {
-            height:{
-                type:String,
-                default:"200px"
+            height: {
+                type: String,
+                default: '200px'
             },
-            top:{
-                type:String,
-                default:"300px"
+            top: {
+                type: String,
+                default: '300px'
             },
             title: {
-                type:String,
-                default: "标题"
+                type: String,
+                default: '标题'
             },
             buttons: {
-                type:String,
-                default: "取消,确定"
+                type: String,
+                default: '取消,确定'
             },
             value: {
                 type: Boolean,
                 default: false
             }
         },
-        data(){
-            return{
-                visible:false
+        data() {
+            return {
+                visible: false
             }
         },
         watch: {
@@ -56,7 +56,7 @@
                 this.$emit('input', val);
             }
         },
-        mounted(){
+        mounted() {
             if (this.value) {
                 this.visible = true;
             }
@@ -68,12 +68,12 @@
         },
         methods: {
             _click(text) {
-                this.$emit("btnClick", text);
+                this.$emit('btnClick', text);
             },
             _maskClick() {
                 this.visible = false;
-                this.$emit("maskClick");
+                this.$emit('maskClick');
             }
         }
-    }
+    };
 </script>

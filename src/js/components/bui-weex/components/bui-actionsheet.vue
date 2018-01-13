@@ -22,20 +22,20 @@
     module.exports = {
         props: {
             title: {
-                default: "请选择操作"
+                default: '请选择操作'
             },
             items: {
                 type: Array
             },
             button: {
-                default: "取消"
+                default: '取消'
             },
             value: {
                 type: Boolean,
                 default: false
             }
         },
-        data(){
+        data() {
             return {
                 visible: false
             }
@@ -48,21 +48,21 @@
                 this.$emit('input', val);
             }
         },
-        mounted(){
+        mounted() {
             if (this.value) {
                 this.visible = true;
             }
         },
         computed: {
-            bottom () {
+            bottom() {
                 return (this.items.length + 1) * 100 + 80;
             }
         },
         methods: {
-            show(){
-                setTimeout(()=>{
+            show() {
+                setTimeout(() => {
                     this._open();
-                },50);
+                }, 50);
             },
             _animationFn: function (translate, fn) {
                 var el = this.$refs.actionsheetBox;
@@ -72,7 +72,7 @@
                         transformOrigin: 'center center'
                     },
                     duration: 200,
-                    timingFunction: "ease-in",
+                    timingFunction: 'ease-in',
                     delay: 0
                 }, () => {
                     fn && fn();
@@ -82,11 +82,11 @@
                 var translate = 'translate(0px, -' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate)
             },
-            _maskClick () {
+            _maskClick() {
                 var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
                     this.visible = false;
-                    this.$emit("maskClick");
+                    this.$emit('maskClick');
                 });
             },
             _itemClick(item) {
@@ -104,7 +104,7 @@
                 });
             }
         }
-    }
+    };
 </script>
 
 <style lang="sass" src="../css/actionsheet.scss"/>

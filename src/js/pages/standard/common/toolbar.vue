@@ -1,7 +1,7 @@
 <template>
     <scroller class="toolbar-scroller"
             show-scrollbar=false
-            scroll-drection="horizontal"
+            scroll-direction="horizontal"
             flex-direction="row">
         <text class="toolbar-text" :class="[pIndexKey == index ? 'active' : '']" v-for="(x,index) in items" @click="selectedClick(x.key,index)">{{x.name}}</text>
     </scroller>
@@ -31,18 +31,18 @@
         props: {
             items: {
                 type: Array,
-                default:[]
+                default: []
             }
         },
-        data(){
+        data() {
             return {
                 pIndexKey: 0
             };
         },
-        methods:{
-            selectedClick(key,index){
+        methods: {
+            selectedClick(key, index) {
                 this.pIndexKey = index;
-                this.$emit("selectedClick", {
+                this.$emit('selectedClick', {
                     key: key,
                     index: index
                 });
