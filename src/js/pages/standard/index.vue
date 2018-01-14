@@ -1,7 +1,7 @@
 <template>
     <div class="app-wrapper">
         <embed v-for="(item,index) in items" :src="item.src" type="weex" class="content" :style="{visibility:item.visibility}">
-            <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
+        <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
     </div>
 </template>
 
@@ -14,9 +14,6 @@
     }
 </style>
 <style scoped>
-    .iconfont {
-        font-family: iconfont;
-    }
     .content {
         position: absolute;
         top: 0;
@@ -33,7 +30,7 @@
 
 <script>
     console.log('------------------------------------------------- New Instance');
-    if (process.env.NODE_ENV === 'development') require('Config')
+    if (process.env.NODE_ENV === 'development') require('Config/index.js')
     import tabBar from './common/tabBar';
     import {tabConfig} from './config'
 

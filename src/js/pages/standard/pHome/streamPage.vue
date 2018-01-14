@@ -113,7 +113,7 @@
 <script>
     import WxcTabPage from 'Components/weex-ui/wxc-tab-page'
     import buiImageSlider from 'Components/bui-weex/components/bui-image-slider.vue'
-    import streamContent from './streamContent.vue'
+    import streamContent from '../common/streamContent.vue'
     import buiIcon from 'Components/bui-weex/components/bui-icon.vue'
     import toolBar from './toolbar.vue'
 

@@ -3,8 +3,8 @@
 </template>
 
 <script>
-    if (process.env.NODE_ENV === 'development')require('Config')
-    import streamPage from '../common/streamPage.vue'
+    if (process.env.NODE_ENV === 'development')require('Config/index.js')
+    import streamPage from './streamPage.vue'
 
     export default {
         components: {streamPage},

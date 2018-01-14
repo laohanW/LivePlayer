@@ -89,7 +89,11 @@
         methods: {
             onClick(key) {
                 console.log('select' + key);
+                this.$router.open({
+                    name: 'streamRoom',
+                    type: 'PUSH'
+                });
             }
         }
-    };
+    }
 </script>

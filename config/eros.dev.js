@@ -7,10 +7,12 @@ module.exports = {
         'js/mediator/index.vue',
         // home
         'js/pages/standard/index.vue',
-        'js/pages/standard/home/index.vue',
-        'js/pages/standard/discover/index.vue',
-        'js/pages/standard/entertain/index.vue',
-        'js/pages/standard/mine/index.vue'
+        'js/pages/standard/pHome/index.vue',
+        'js/pages/standard/pDiscover.vue',
+        'js/pages/standard/pEntertain.vue',
+        'js/pages/standard/pMine.vue',
+
+        'js/pages/standard/pRoom/index.vue'
         // 'js/pages/eros-demos/index.vue',
         //
         // 'js/pages/eros-demos/tab1/tab-page/index.vue',
