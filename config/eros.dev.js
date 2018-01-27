@@ -12,7 +12,8 @@ module.exports = {
         'js/pages/standard/pEntertain.vue',
         'js/pages/standard/pMine.vue',
 
-        'js/pages/standard/pRoom/index.vue'
+        'js/pages/standard/pRoom/index.vue',
+        'js/pages/standard/pLogin/index.vue'
         // 'js/pages/eros-demos/index.vue',
         //
         // 'js/pages/eros-demos/tab1/tab-page/index.vue',

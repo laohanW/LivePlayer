@@ -78,9 +78,6 @@
         border-style: solid;
         border-color: #e0e0e0;
     }
-    .cell-eqSlider{
-
-    }
     .cell-search{
         width:750px;
         justify-items: center;
@@ -114,7 +111,7 @@
     import WxcTabPage from 'Components/weex-ui/wxc-tab-page'
     import buiImageSlider from 'Components/bui-weex/components/bui-image-slider.vue'
     import streamContent from '../common/streamContent.vue'
-    import buiIcon from 'Components/bui-weex/components/bui-icon.vue'
+    import WxcIcon from 'Components/weex-ui/wxc-icon'
     import toolBar from './toolbar.vue'
 
     export default {
@@ -123,7 +120,7 @@
                 type: Number
             }
         },
-        components: {WxcTabPage, buiImageSlider, streamContent, buiIcon, toolBar},
+        components: {WxcTabPage, buiImageSlider, streamContent, WxcIcon, toolBar},
         created() {
             this.$fetch({
                 method: 'POST',

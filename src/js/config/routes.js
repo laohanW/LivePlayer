@@ -7,5 +7,9 @@
 export default {
     'streamRoom': {
         url: '/pages/standard/pRoom/index.js'
+    },
+    'login': {
+        url: '/pages/standard/pLogin.js',
+        title: '登录'
     }
 }
